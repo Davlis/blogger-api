@@ -1,0 +1,23 @@
+{
+  "name": "blogspot",
+  "version": "1.0.0",
+  "description": "Create your own blog using blogspot.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davlis/blogspot-api.git"
+  },
+  "keywords": [
+    "blogspot",
+    "blog"
+  ],
+  "author": "Dawid Liszka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Davlis/blogspot-api/issues"
+  },
+  "homepage": "https://github.com/Davlis/blogspot-api#readme"
+}
