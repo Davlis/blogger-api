@@ -15,6 +15,16 @@ export function login(req, res) {
     }
 }
 
-export function register(req, res) {
-    res.status(501).json('Not implemented.')
+export async function register(req, res) {
+    const { email, password, lastName, firstName } = req.body
+    const { User } = req.app.get('models')
+
+    const user = await User.create({
+        email,
+        password,
+        lastName,
+        firstName,
+    })
+
+    res.send(user)
 }
