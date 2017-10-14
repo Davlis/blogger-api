@@ -4,7 +4,11 @@
   "description": "Create your own blog using blogspot.",
   "main": "server.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "build": "babel src -d dist",
+    "start": "node --harmony dist/server",
+    "watch": "babel -w src -d dist",
+    "watch-d": "babel -w src -d dist & nodemon --harmony dist/server"
   },
   "repository": {
     "type": "git",
@@ -20,8 +24,16 @@
     "url": "https://github.com/Davlis/blogspot-api/issues"
   },
   "homepage": "https://github.com/Davlis/blogspot-api#readme",
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  },
   "dependencies": {
     "express": "^4.16.2",
-    "http": "0.0.0"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
