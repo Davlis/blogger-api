@@ -1,21 +1,26 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import morgan from 'morgan'
 import router from './routes'
 import generateConfig from './config'
 
 process.on('unhandledRejection', console.error)
 
-const app = initApp(generateConfig(), null)
+const config = generateConfig()
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!')
+const app = initApp(config, null)
+
+app.listen(config.port, () => {
+    console.log(`App listening on port ${config.port}!`)
 })
 
 export default function initApp(config, depedencies) {
     const app = express()
 
     app.set('config', config)
+
+    app.use(morgan('dev'))
 
     app.use(cors({ origin: true }))
 
