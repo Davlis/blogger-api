@@ -1,0 +1,152 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Blogspot",
+		"_postman_id": "bbf1f118-ff3b-ee96-2ed0-70014e929994",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"url": "localhost:3000/auth/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ddewid@gmail.com\",\n\t\"password\": \"1password\",\n\t\"firstName\": \"Dawid\",\n\t\"lastName\": \"Liszka\"\n}"
+						},
+						"description": "Register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"url": "localhost:3000/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ddewid@gmail.com\",\n\t\"password\": \"1password\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blogs",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/blogs",
+					"request": {
+						"url": "localhost:3000/blogs",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My blog\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/blogs/:id",
+					"request": {
+						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+					"request": {
+						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"ABC\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+					"request": {
+						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"description": "",
+			"item": []
+		}
+	]
+}

@@ -11,7 +11,7 @@ export function assertOrThrow(statement, errorType, ...errorArgs) {
 }
 
 export function pick(object, properties) {
-    let _object = null
+    const _object = {}
 
     if (!object || (!properties || !properties.split)) {
         return object
@@ -21,7 +21,7 @@ export function pick(object, properties) {
 
     for (let [k, v] of Object.entries(object)) {
         if (properties.includes(k)) {
-            _object.k = v
+            _object[k] = v
         }
     }
 
