@@ -8,6 +8,7 @@ const SCHEMA = {
     },
     content: {
         type: DataTypes.JSON,
+        defaultValue: "",
     },
     publishDate: {
         type: DataTypes.DATE,

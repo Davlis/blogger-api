@@ -1,17 +1,40 @@
 import { assertOrThrow, pick } from '../utils'
 
 export async function createBlog(req, res) {
-    const { Blog, User } = req.app.get('models')
+    const sequelize = req.app.get('sequelize')
+    const { Blog, UserBlog } = req.app.get('models')
     const { user } = res.locals
 
     const input = pick(req.body, 'title')
 
+    const transaction = await sequelize.transaction()
+
     const blog = await Blog.create({
         title: input.title,
+        owner: user.id,
+    }, { transaction })
+
+    await UserBlog.create({
         userId: user.id,
-    })
+        blogId: blog.id,
+    }, { transaction })
+
+    await transaction.commit()
 
     res.send(blog)
+}
+
+export async function getUserBlogs(req, res) {
+    const { UserBlog, Blog } = req.app.get('models')
+    const { user } = res.locals
+
+    const blogs = await UserBlog.findAll({
+        userId: user.id,
+        include: [Blog,],
+        attributes: ['blogId',]
+    })
+
+    res.send(blogs)
 }
 
 export async function getBlog(req, res) {

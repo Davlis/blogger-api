@@ -1,4 +1,5 @@
 import { assertOrThrow } from '../utils'
+import { USER_ROLES } from '../models/user'
 
 export async function login(req, res) {
     const config = res.app.get('config')
@@ -32,6 +33,7 @@ export async function register(req, res) {
         lastName,
         firstName,
         passhash,
+        role: USER_ROLES.CUSTOMER,
     })
 
     res.send(user)

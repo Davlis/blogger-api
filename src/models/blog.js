@@ -10,7 +10,7 @@ const SCHEMA = {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    userId: {
+    owner: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
@@ -24,7 +24,7 @@ export default function(sequelize) {
     const Blog = sequelize.define('blog', SCHEMA);
 
     Blog.associate = function({ User }) {
-        Blog.belongsTo(User, { foreignKey: 'userId' })
+        Blog.belongsTo(User, { foreignKey: 'owner' })
     }
 
     return Blog

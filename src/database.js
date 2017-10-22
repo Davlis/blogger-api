@@ -3,6 +3,7 @@ import generateConfig from './config'
 import defineUser from './models/user'
 import defineBlog from './models/blog'
 import definePost from './models/post'
+import defineUserBlog from './models/user-blog'
 
 export default function initSequelizeFromConfig(config) {
 
@@ -14,6 +15,7 @@ export default function initSequelizeFromConfig(config) {
         User: defineUser(sequelize),
         Blog: defineBlog(sequelize),
         Post: definePost(sequelize),
+        UserBlog: defineUserBlog(sequelize),
     }
 
     Object.keys(models).forEach((name) => {

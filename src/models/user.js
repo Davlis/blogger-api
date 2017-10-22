@@ -2,6 +2,11 @@ import { DataTypes } from 'sequelize'
 import { createHmac } from 'crypto'
 import jwt from 'jsonwebtoken'
 
+export const USER_ROLES = {
+    ADMIN: 'admin',
+    CUSTOMER: 'customer',
+}
+
 const SCHEMA = {
     id: {
         type: DataTypes.UUID,
@@ -37,7 +42,25 @@ const SCHEMA = {
                 }
             },
         },
-    }
+    },
+    role: {
+        type: DataTypes.ENUM(Object.values(USER_ROLES)),
+        allowNull: false,
+    },
+    photoUrl: {
+        type: DataTypes.STRING(511),
+        allowNull: true,
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+    },
 }
 
 export default function(sequelize) {
