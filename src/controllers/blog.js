@@ -78,3 +78,57 @@ export async function deleteBlog(req, res) {
 
     res.send('ok')
 }
+
+export async function grantAccess(req, res) {
+    const { UserBlog, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { blogId } = req.params
+    const newUser = req.body.userId
+
+    const userBlog = await UserBlog.find({
+        where: {
+            blogId,
+        },
+        include: [{
+            model: Blog,
+            where: {
+                owner: user.id,
+            }
+        }]
+    })
+
+    assertOrThrow(userBlog, Error, 'Blog not found')
+
+    await UserBlog.create({
+        blogId,
+        userId: newUser,
+    })
+
+    res.send(userBlog)
+}
+
+export async function revokeAccess(req, res) {
+    const { UserBlog, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { blogId } = req.params
+    const revokeUser = req.body.userId
+
+    const userBlog = await UserBlog.find({
+        where: {
+            blogId,
+            userId: revokeUser,
+        },
+        include: [{
+            model: Blog,
+            where: {
+                owner: user.id,
+            }
+        }]
+    })
+
+    assertOrThrow(userBlog, Error, 'UserBlog not found')
+
+    await userBlog.destroy()
+
+    res.send('ok')
+}

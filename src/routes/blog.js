@@ -9,5 +9,7 @@ router.get('/', errorWrap(blogController.getUserBlogs))
 router.get('/:blogId', errorWrap(blogController.getBlog))
 router.put('/:blogId', errorWrap(blogController.updateBlog))
 router.delete('/:blogId', errorWrap(blogController.deleteBlog))
+router.post('/:blogId/access', errorWrap(blogController.grantAccess))
+router.delete('/:blogId/access', errorWrap(blogController.revokeAccess))
 
 export default router
