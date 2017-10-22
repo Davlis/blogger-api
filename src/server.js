@@ -20,6 +20,7 @@ app.listen(config.port, () => {
 })
 
 export default function initApp(config, depedencies) {
+  
     const app = express()
 
     app.set('config', config)

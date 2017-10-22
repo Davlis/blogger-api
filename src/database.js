@@ -1,14 +1,24 @@
 import Sequelize from 'sequelize'
-import defineUser from './models/user';
+import generateConfig from './config'
+import defineUser from './models/user'
+import defineBlog from './models/blog'
 
 export default function initSequelizeFromConfig(config) {
+
     const sequelize = new Sequelize(config.postgres.uri, {
         dialect: 'postgres',
     })
+    
     const models = {
         User: defineUser(sequelize),
+        Blog: defineBlog(sequelize),
     }
 
-    return { sequelize, models }
+    Object.keys(models).forEach((name) => {
+        if ('associate' in models[name]) {
+            models[name].associate(models)
+        }
+    })
 
+    return { sequelize, models }
 }

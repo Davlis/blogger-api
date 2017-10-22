@@ -42,7 +42,6 @@ const SCHEMA = {
 
 export default function(sequelize) {
     const User = sequelize.define('user', SCHEMA);
-    User.sync()
 
     User.hashPassword = (password, salt) => {
         return createHmac('sha512', salt)

@@ -8,7 +8,9 @@
     "build": "babel src -d dist",
     "start": "node --harmony dist/server",
     "watch": "babel -w src -d dist",
-    "watch-d": "babel -w src -d dist & nodemon --harmony dist/server"
+    "watch-d": "babel -w src -d dist & nodemon --harmony dist/server",
+    "drop-db": "node ./dist/tools/drop-database.js",
+    "sync-db": "node ./dist/tools/sync-database.js"
   },
   "repository": {
     "type": "git",
