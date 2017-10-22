@@ -6,10 +6,29 @@ const SCHEMA = {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
     },
+    content: {
+        type: DataTypes.JSON,
+    },
+    publishDate: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+    },
+    blogId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'blogs',
+            key: 'id',
+        },
+    }
 }
 
 export default function(sequelize) {
     const Post = sequelize.define('post', SCHEMA);
 
-    return Blog
+    Post.associate = function({ Blog }) {
+        Post.belongsTo(Blog, { foreignKey: 'blogId' })
+    }
+
+    return Post
 }

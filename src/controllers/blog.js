@@ -8,7 +8,7 @@ export async function createBlog(req, res) {
 
     const blog = await Blog.create({
         title: input.title,
-        owner: user.id,
+        userId: user.id,
     })
 
     res.send(blog)
@@ -17,9 +17,9 @@ export async function createBlog(req, res) {
 export async function getBlog(req, res) {
     const { Blog, User } = req.app.get('models')
     const { user } = res.locals
-    const { id } = req.params
+    const { blogId } = req.params
 
-    const blog = await Blog.findById(id)
+    const blog = await Blog.findById(blogId)
 
     assertOrThrow(blog, Error, 'Blog not found')
 
@@ -29,10 +29,10 @@ export async function getBlog(req, res) {
 export async function updateBlog(req, res) {
     const { Blog, User } = req.app.get('models')
     const { user } = res.locals
-    const { id } = req.params
+    const { blogId } = req.params
     const input = pick(req.body, 'title')
 
-    const blog = await Blog.findById(id)
+    const blog = await Blog.findById(blogId)
 
     assertOrThrow(blog, Error, 'Blog not found')
 
@@ -44,10 +44,10 @@ export async function updateBlog(req, res) {
 export async function deleteBlog(req, res) {
     const { Blog, User } = req.app.get('models')
     const { user } = res.locals
-    const { id } = req.params
+    const { blogId } = req.params
     const input = pick(req.body, 'title')
 
-    const blog = await Blog.findById(id)
+    const blog = await Blog.findById(blogId)
 
     assertOrThrow(blog, Error, 'Blog not found')
 
