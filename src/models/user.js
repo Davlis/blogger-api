@@ -49,10 +49,19 @@ export default function(sequelize) {
             .digest('hex')
     }
 
-    User.getAuthToken = (email, salt) => {
+    User.getAuthToken = (id, salt) => {
         return jwt.sign({
-            email,
+            id,
         }, salt)
+    }
+
+    User.findByEmail = async (email) => {
+        const user = await User.find({
+            where: {
+                email: email,
+            },
+        })
+        return user
     }
 
     return User

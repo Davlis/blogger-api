@@ -5,12 +5,8 @@ export async function login(req, res) {
     const { email, password } = req.body
     const { User } = req.app.get('models')
 
-    const user = await User.find({
-        where: {
-            email: email,
-        },
-    })
-
+    const user = await User.findByEmail(email)
+    
     assertOrThrow(user, Error, 'User not found')
 
     assertOrThrow(
@@ -18,7 +14,7 @@ export async function login(req, res) {
         Error,
         'Invalid password')
 
-    const token = User.getAuthToken(email, config.salt)
+    const token = User.getAuthToken(user.id, config.salt)
 
     res.send({ user, token })       
 }

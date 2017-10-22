@@ -13,13 +13,11 @@ export function assertOrThrow(statement, errorType, ...errorArgs) {
 export function pick(object, properties) {
     let _object = null
 
-    if (!object) {
+    if (!object || (!properties || !properties.split)) {
         return object
     }
 
-    if (properties && properties.split) {
-        properties = properties.split(' ')
-    }
+    properties = properties.split(' ')
 
     for (let [k, v] of Object.entries(object)) {
         if (properties.includes(k)) {

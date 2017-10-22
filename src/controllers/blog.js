@@ -1,10 +1,10 @@
 import { assertOrThrow, pick } from '../utils'
 
 export async function createBlog(req, res) {
-    const input = pick(req.body, 'title')
     const { Blog, User } = req.app.get('models')
+    const { user } = res.locals
 
-    console.log(res.locals.user)
+    const input = pick(req.body, 'title')
 
-    res.send('ok')
+    res.send('Not implemented')
 }
