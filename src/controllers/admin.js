@@ -28,14 +28,6 @@ export async function unblockUser(req, res) {
     res.json({ user })
 }
 
-export async function deleteUserBlog(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
-}
-
-export async function deleteUserPost(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
-}
-
 export async function deleteUserComment(req, res) {
     res.json({ status: 'NOT IMPLEMENTED' })
 }

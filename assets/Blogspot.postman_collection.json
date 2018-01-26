@@ -328,6 +328,23 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "my-list",
+					"request": {
+						"url": "localhost:3000/blogs/my-list",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0YmJhNmJkLTUzODQtNDEwNi04YmE2LWM3NmE5ZGU5YzhhNSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTY3NzYsImV4cCI6MTUxNzA4MzE3Nn0.63cXwEqUDR4nRY8Bso2LeFy9gnIURspOZZe5VdwUUXA",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -525,6 +542,103 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzNWM3YTA2LTYxYjEtNDE3My1hZWY4LWJkYzZjOThiYmIzMyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTE3NDMsImV4cCI6MTUxNzA3ODE0M30.pG0JeGI2Ah3_D818ocE8GQiqCt-3KP1xXQESdcEcUyQ",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/search/posts/tag?query=Animals",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/search/posts/tag?query=Animals",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"posts",
+								"tag"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Animals",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTIyOTAsImV4cCI6MTUxNzA3ODY5MH0.etd6vb0_SkpFKZ2AMWd5Bxle8cSjOqG_ZsjZgsAjIHY",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/search/blogs/tag?query=Animals",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/search/blogs/tag?query=Animals",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"blogs",
+								"tag"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Animals",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTIyOTAsImV4cCI6MTUxNzA3ODY5MH0.etd6vb0_SkpFKZ2AMWd5Bxle8cSjOqG_ZsjZgsAjIHY",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/admin/users",
+					"request": {
+						"url": "localhost:3000/admin/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTQ4ODcsImV4cCI6MTUxNzA4MTI4N30.ZtfZl6hX3ARzl0RVDGbvK2cBUYUN-EoK56HHMik85ik",
 								"description": ""
 							}
 						],

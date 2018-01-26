@@ -135,8 +135,19 @@ export async function revokeAccess(req, res) {
     res.json({ status: 'ok' })
 }
 
-export async function reportBlog(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+export async function getMyBlogList(req, res) {
+    const { UserBlog, Blog, Subscription } = req.app.get('models')
+
+    const { user } = res.locals
+
+    const result = await Subscription.findAll({
+        where: {
+            userId: user.id,
+        },
+        include: [{ all: true }]
+    })
+
+    res.json({ result })
 }
 
 export async function addComment(req, res) {
