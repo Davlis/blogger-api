@@ -1,5 +1,6 @@
 import generateConfig from '../../config'
 import initSequelizeFromConfig from '../../database'
+import { getTf, getIdf, getWords } from '../../lib/tfidf'
 
 const engineTimeInterval = process.env.TAGGING_INTERVAL || 60*60*24
 
@@ -48,37 +49,4 @@ async function start(sequelize, models) {
 function startInterval(seconds, callback) {
     callback();
     return setInterval(callback, seconds*1000);
-}
-
-function getWords(content) {
-    return content.split(/[ ,.;:?!@#$%^&*()]+/).filter(Boolean)
-}
-
-function getTf(word, words) {
-    return count(words, word)/words.length
-}
-
-function getIdf(word, documents) {
-    const documentLength = documents.length
-    let i = 0
-
-    for (const document of documents) {
-        const words = getWords(document.content)
-
-        if (words.includes(word)) {
-            ++i
-        }
-    }
-
-    return Math.log(documentLength/i)
-}
-
-function count(array, word) {
-    let i = 0
-    for (const item of array) {
-        if (item === word) {
-            ++i
-        }
-    }
-    return i
 }
