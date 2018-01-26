@@ -1,8 +1,8 @@
 import { assertOrThrow, pick } from '../utils'
 import { REPORT_TYPES } from '../models/report'
+import { USER_ROLES } from '../models/user'
 
 export async function report(req, res) {
-    const sequelize = req.app.get('sequelize')
     const { Report } = req.app.get('models')
     const { user } = res.locals
 
@@ -22,4 +22,15 @@ export async function report(req, res) {
 
     await Report.create(report)
     res.send(report)
+}
+
+export async function getReports(req, res) {
+    const { Report, User, Post, Blog } = req.app.get('models')
+    const { user } = res.locals
+
+    assertOrThrow(user.role === USER_ROLES.ADMIN, Error, 'Insufficient rights')
+
+    const reports = await Report.findAll({include: [{all: true}]})
+
+    res.send(reports)
 }

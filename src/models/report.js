@@ -1,9 +1,9 @@
 import { DataTypes } from 'sequelize'
 
 export const REPORT_TYPES = {
-  POST: 'post',
-  BLOG: 'blog',
-  USER: 'user',
+    POST: 'post',
+    BLOG: 'blog',
+    USER: 'user',
 }
 
 const SCHEMA = {
