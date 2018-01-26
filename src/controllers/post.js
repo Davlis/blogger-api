@@ -41,12 +41,15 @@ export async function updatePost(req, res) {
 
     const { Post } = req.app.get('models')
     const { postId } = req.params
+    const body = req.body
 
     const post = await Post.findById(postId)
 
     assertOrThrow(post, Error, 'Post not found')
 
-    await post.update(req.body)
+    body.tags = normalizeWords(body.tags)
+
+    await post.update(body)
 
     res.json(post)
 }
