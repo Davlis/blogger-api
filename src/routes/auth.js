@@ -7,5 +7,6 @@ const router = Router()
 router.post('/login', errorWrap(authController.login))
 router.post('/register', errorWrap(authController.register))
 router.post('/resetPassword', errorWrap(authController.resetPassword))
+router.post('/setPassword', errorWrap(authController.setPassword))
 
 export default router
