@@ -34,3 +34,18 @@ export async function getReports(req, res) {
 
     res.send(reports)
 }
+
+export async function deleteReport(req, res) {
+    const { Report } = req.app.get('models')
+    const { user } = res.locals
+    const { reportId } = req.params
+
+    assertOrThrow(user.role === USER_ROLES.ADMIN, Error, 'Insufficient rights')
+
+    const report = await Report.findById(reportId)
+
+    assertOrThrow(report, Error, 'Report not found')
+
+    await report.destroy()
+    res.send('ok')
+}

@@ -6,5 +6,6 @@ const router = Router()
 
 router.post('/', errorWrap(reportController.report))
 router.get('/', errorWrap(reportController.getReports))
+router.delete('/:reportId', errorWrap(reportController.deleteReport))
 
 export default router
