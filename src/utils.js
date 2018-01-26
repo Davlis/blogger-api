@@ -1,3 +1,7 @@
+import { resolve as pathResolve } from 'path'
+import { compileFile } from 'pug'
+import moment from 'moment'
+
 export function errorWrap(handler) {
     return function (...args) {
         handler(...args).catch(args[args.length - 1])
@@ -26,4 +30,10 @@ export function pick(object, properties) {
     }
 
     return _object
+}
+
+export function compileTemplate(fileName, pretty = false) {
+    const tpl = compileFile(pathResolve(__dirname, `./templates/${fileName}.pug`), { pretty })
+
+    return (input) => tpl(Object.assign({}, { moment }, input))
 }
