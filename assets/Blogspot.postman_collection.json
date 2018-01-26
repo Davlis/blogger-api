@@ -369,6 +369,23 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "localhost:3000/report/692d43c8-ccee-4165-a923-b30d5f977bb2",
+					"request": {
+						"url": "localhost:3000/report/692d43c8-ccee-4165-a923-b30d5f977bb2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsImlhdCI6MTUxNjk2NDQxMn0.-EfNrBAgVnQvWL_vRnYLmv1qWr09P3sRCzWLKtsoo7U",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		}
