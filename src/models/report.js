@@ -30,7 +30,7 @@ const SCHEMA = {
     },
     postId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'posts',
             key: 'id',
@@ -38,7 +38,7 @@ const SCHEMA = {
     },
     blogId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'blogs',
             key: 'id',
@@ -46,7 +46,7 @@ const SCHEMA = {
     },
     userId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: 'users',
             key: 'id',
