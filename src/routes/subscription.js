@@ -6,6 +6,6 @@ const router = Router()
 
 router.post('/', errorWrap(subscriptionController.subscribe))
 router.get('/', errorWrap(subscriptionController.getSubscriptions))
-router.delete('/:reportId', errorWrap(subscriptionController.deleteSubscription))
+router.delete('/:subscriptionId', errorWrap(subscriptionController.deleteSubscription))
 
 export default router
