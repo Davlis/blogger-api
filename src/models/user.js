@@ -8,7 +8,7 @@ export const USER_ROLES = {
 }
 
 export const USER_STATUS = {
-    ACTIVE: 'active',
+    ACTIVE: 'actived',
     BLOCKED: 'blocked',
 }
 
@@ -77,6 +77,7 @@ export default function(sequelize) {
     const User = sequelize.define('user', SCHEMA)
 
     User.USER_ROLES = USER_ROLES
+    User.USER_STATUS = USER_STATUS
 
     User.hashPassword = (password, salt) => {
         return createHmac('sha512', salt)

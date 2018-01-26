@@ -1,5 +1,5 @@
 import { assertOrThrow } from '../utils'
-import { USER_ROLES } from '../models/user'
+import { USER_ROLES, USER_STATUS } from '../models/user'
 
 export async function login(req, res) {
 
@@ -10,6 +10,8 @@ export async function login(req, res) {
     const user = await User.findByEmail(email)
     
     assertOrThrow(user, Error, 'User not found')
+
+    assertOrThrow(user.status !== USER_STATUS.BLOCKED, Error, 'User is blocked')
 
     assertOrThrow(
         user.getDataValue('passhash') === User.hashPassword(password, config.salt),
