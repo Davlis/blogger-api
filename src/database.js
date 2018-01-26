@@ -6,6 +6,7 @@ import definePost from './models/post'
 import defineUserBlog from './models/user-blog'
 import defineBlogComment from './models/blog-comment'
 import definePostComment from './models/post-comment'
+import defineReport from './models/report'
 
 export default function initSequelizeFromConfig(config) {
 
@@ -20,6 +21,7 @@ export default function initSequelizeFromConfig(config) {
         UserBlog: defineUserBlog(sequelize),
         BlogComment: defineBlogComment(sequelize),
         PostComment: definePostComment(sequelize),
+        Report: defineReport(sequelize),
     }
 
     Object.keys(models).forEach((name) => {
