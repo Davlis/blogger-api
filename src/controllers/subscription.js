@@ -32,5 +32,14 @@ export async function getSubscriptions(req, res) {
 }
 
 export async function deleteSubscription(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const { Subscription } = req.app.get('models')
+    const { subscriptionId } = req.params
+
+    const subscription = await Subscription.findById(subscriptionId)
+
+    assertOrThrow(subscription, Error, 'Subscription not found')
+
+    await subscription.destroy()
+
+    res.json({status: 'ok'})
 }

@@ -21,7 +21,7 @@ export async function report(req, res) {
     report[input.type + 'Id'] = input.id
 
     await Report.create(report)
-    res.send(report)
+    res.json(report)
 }
 
 export async function getReports(req, res) {
@@ -32,7 +32,7 @@ export async function getReports(req, res) {
 
     const reports = await Report.findAll({include: [{all: true}]})
 
-    res.send(reports)
+    res.json(reports)
 }
 
 export async function deleteReport(req, res) {
@@ -47,7 +47,7 @@ export async function deleteReport(req, res) {
     assertOrThrow(report, Error, 'Report not found')
 
     await report.destroy()
-    res.send('ok')
+    res.json({ status: 'ok' })
 }
 
 export async function getReport(req, res) {
@@ -63,5 +63,5 @@ export async function getReport(req, res) {
         },
         include: [{all: true,}]})
 
-    res.send(report)
+    res.json(report)
 }

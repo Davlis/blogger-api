@@ -21,7 +21,7 @@ export async function createPost(req, res) {
         blogId,
     })
 
-    res.send(post)
+    res.json(post)
 }
 
 export async function getPost(req, res) {
@@ -31,7 +31,7 @@ export async function getPost(req, res) {
 
     const post = await Post.findById(postId)
 
-    res.send(post)
+    res.json(post)
 }
 
 export async function updatePost(req, res) {
@@ -44,6 +44,8 @@ export async function updatePost(req, res) {
     assertOrThrow(post, Error, 'Post not found')
 
     await post.update(req.body)
+
+    res.json(post)
 }
 
 export async function deletePost(req, res) {
@@ -57,7 +59,7 @@ export async function deletePost(req, res) {
 
     await post.destroy()
 
-    res.send('ok')
+    res.json({ status: 'ok' })
 }
 
 export async function getBlogPosts(req, res) {
@@ -77,9 +79,9 @@ export async function getBlogPosts(req, res) {
         }
     })
 
-    res.send(posts)
+    res.json(posts)
 }
 
 export async function reportPost(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }

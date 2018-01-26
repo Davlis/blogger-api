@@ -22,7 +22,7 @@ export async function createBlog(req, res) {
 
     await transaction.commit()
 
-    res.send(blog)
+    res.json(blog)
 }
 
 export async function getUserBlogs(req, res) {
@@ -36,7 +36,7 @@ export async function getUserBlogs(req, res) {
         attributes: ['blogId',]
     })
 
-    res.send(blogs)
+    res.json(blogs)
 }
 
 export async function getBlog(req, res) {
@@ -48,7 +48,7 @@ export async function getBlog(req, res) {
 
     assertOrThrow(blog, Error, 'Blog not found')
 
-    res.send(blog)
+    res.json(blog)
 }
 
 export async function updateBlog(req, res) {
@@ -63,7 +63,7 @@ export async function updateBlog(req, res) {
 
     await blog.update(input)
 
-    res.send(blog)
+    res.json(blog)
 }
 
 export async function deleteBlog(req, res) {
@@ -78,7 +78,7 @@ export async function deleteBlog(req, res) {
 
     await blog.destroy()
 
-    res.send('ok')
+    res.json({ status: 'ok' })
 }
 
 export async function grantAccess(req, res) {
@@ -106,7 +106,7 @@ export async function grantAccess(req, res) {
         userId: newUser,
     })
 
-    res.send(userBlog)
+    res.json(userBlog)
 }
 
 export async function revokeAccess(req, res) {
@@ -132,25 +132,25 @@ export async function revokeAccess(req, res) {
 
     await userBlog.destroy()
 
-    res.send('ok')
+    res.json({ status: 'ok' })
 }
 
 export async function reportBlog(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }
 
 export async function addComment(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }
 
 export async function removeComment(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }
 
 export async function updateComment(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }
 
 export async function reportComment(req, res) {
-    res.send('NOT IMPLEMENTED')
+    res.json({ status: 'NOT IMPLEMENTED' })
 }
