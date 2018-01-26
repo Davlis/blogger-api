@@ -150,7 +150,7 @@ export async function getMyBlogList(req, res) {
             include: [{
                 model: User,
             }]
-        }]
+        }],
         limit,
         offset,
     })
