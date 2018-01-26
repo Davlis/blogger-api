@@ -42,3 +42,15 @@ export async function register(req, res) {
 
     res.json(user)
 }
+
+export async function resetPassword(req, res) {
+    const { User } = req.app.get('models')
+
+    const input = pick(req.body, 'email')
+
+    const user = await User.findByEmail(input.email)
+
+    assertOrThrow(user, Error, 'User not found')
+
+    res.json({ status: 'ok' })
+}
