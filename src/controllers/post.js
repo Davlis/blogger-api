@@ -79,3 +79,7 @@ export async function getBlogPosts(req, res) {
 
     res.send(posts)
 }
+
+export async function reportPost(req, res) {
+    res.send('NOT IMPLEMENTED')
+}

@@ -134,3 +134,23 @@ export async function revokeAccess(req, res) {
 
     res.send('ok')
 }
+
+export async function reportBlog(req, res) {
+    res.send('NOT IMPLEMENTED')
+}
+
+export async function addComment(req, res) {
+    res.send('NOT IMPLEMENTED')
+}
+
+export async function removeComment(req, res) {
+    res.send('NOT IMPLEMENTED')
+}
+
+export async function updateComment(req, res) {
+    res.send('NOT IMPLEMENTED')
+}
+
+export async function reportComment(req, res) {
+    res.send('NOT IMPLEMENTED')
+}
