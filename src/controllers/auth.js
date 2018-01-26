@@ -54,7 +54,7 @@ export async function resetPassword(req, res) {
 
     assertOrThrow(user, Error, 'User not found')
 
-    await user.sendResetPasswordEmail(mailer, config)
+    const response = await user.sendResetPasswordEmail(mailer, config)
     
-    res.json({ status: 'ok' })
+    res.json(response)
 }
