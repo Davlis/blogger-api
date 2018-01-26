@@ -18,9 +18,24 @@ export async function deleteUserComment(req, res) {
 
 export async function getUsers(req, res) {
     const { User } = req.app.get('models')
-    const { user } = res.locals
+    const { offset = 0, limit = 20 } = req.query
 
-    const users = await User.findAll({})
+    const users = await User.findAndCountAll({
+        offset,
+        limit,
+    })
 
-    res.json({users})
+    res.json({ users })
+}
+
+export async function getBlogs(req, res) {
+    const { Blog } = req.app.get('models')
+    const { offset = 0, limit = 20 } = req.query
+
+    const blogs = await Blog.findAndCountAll({
+        offset,
+        limit,
+    })
+
+    res.json({ blogs })
 }
