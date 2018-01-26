@@ -4,7 +4,7 @@ import * as subscriptionController from '../controllers/subscription'
 
 const router = Router()
 
-router.post('/', errorWrap(subscriptionController.subscribeTo))
+router.post('/', errorWrap(subscriptionController.subscribe))
 router.get('/', errorWrap(subscriptionController.getSubscriptions))
 router.delete('/:reportId', errorWrap(subscriptionController.deleteSubscription))
 

@@ -1,6 +1,6 @@
 import { assertOrThrow, pick } from '../utils'
 
-export async function subscribeTo(req, res) {
+export async function subscribe(req, res) {
     res.json({ status: 'NOT IMPLEMENTED' })
 }
 
