@@ -6,6 +6,10 @@ export const SCHEMA = {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
     },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     content: {
         type: DataTypes.JSON,
         defaultValue: "",
