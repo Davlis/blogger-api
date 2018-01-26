@@ -24,7 +24,7 @@ export async function unblockUser(req, res) {
 
     user.status = User.USER_STATUS.ACTIVE
     await user.save()
-    
+
     res.json({ user })
 }
 
@@ -62,4 +62,30 @@ export async function getBlogs(req, res) {
     })
 
     res.json({ blogs })
+}
+
+export async function deleteBlog(req, res) {
+    const { Blog } = req.app.get('models')
+    const { id } = req.params
+
+    const blog = await Blog.findById(id)
+
+    assertOrThrow(blog, Error, 'Blog not found')
+
+    await blog.destroy()
+
+    res.json({ status: 'ok' })
+}
+
+export async function deletePost(req, res) {
+    const { Post } = req.app.get('models')
+    const { id } = req.params
+
+    const post = await Post.findById(id)
+
+    assertOrThrow(post, Error, 'Post not found')
+
+    await post.destroy()
+
+    res.json({ status: 'ok' })
 }
