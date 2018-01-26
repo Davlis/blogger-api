@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Blogspot",
-		"_postman_id": "0575a504-b20a-673a-66f4-c542a7307161",
+		"_postman_id": "698085ad-1db5-0e95-4d49-852985932c37",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -73,7 +73,10 @@
 										"description": ""
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"description": ""
 							},
 							"response": []
@@ -115,7 +118,10 @@
 										"description": ""
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"description": ""
 							},
 							"response": []
@@ -157,13 +163,41 @@
 										"description": ""
 									}
 								],
-								"body": {},
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
 								"description": ""
 							},
 							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "localhost:3000/blogs",
+					"request": {
+						"url": "localhost:3000/blogs",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjZWVlOWU0LTYzMmEtNDQzZC04YTY2LThkOWM2MzcyY2I0YiIsImlhdCI6MTUxNjk1NDk0Mn0.27UGUtu3MHmJOv7ne3z-ZTdjfpPoCeT4a5l_hH7PYxc",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"My blog\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				},
 				{
 					"name": "localhost:3000/blogs",
@@ -193,12 +227,12 @@
 				{
 					"name": "localhost:3000/blogs/:blogId",
 					"request": {
-						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjZWVlOWU0LTYzMmEtNDQzZC04YTY2LThkOWM2MzcyY2I0YiIsImlhdCI6MTUxNjk1NTIyM30.2xNBoHCTlyxII3OeUPM-476Xn8H2igmadzqXuYWA-rU",
 								"description": ""
 							}
 						],
@@ -213,7 +247,7 @@
 				{
 					"name": "localhost:3000/blogs/:blogId",
 					"request": {
-						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "PUT",
 						"header": [
 							{
@@ -223,13 +257,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjZWVlOWU0LTYzMmEtNDQzZC04YTY2LThkOWM2MzcyY2I0YiIsImlhdCI6MTUxNjk1NTIyM30.2xNBoHCTlyxII3OeUPM-476Xn8H2igmadzqXuYWA-rU",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"ABC\"\n}"
+							"raw": "{\n\t\"title\": \"ABCDEF\"\n}"
 						},
 						"description": ""
 					},
@@ -238,12 +272,12 @@
 				{
 					"name": "localhost:3000/blogs/:blogId",
 					"request": {
-						"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333",
+						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjZWVlOWU0LTYzMmEtNDQzZC04YTY2LThkOWM2MzcyY2I0YiIsImlhdCI6MTUxNjk1NTIyM30.2xNBoHCTlyxII3OeUPM-476Xn8H2igmadzqXuYWA-rU",
 								"description": ""
 							}
 						],
