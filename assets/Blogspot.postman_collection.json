@@ -388,6 +388,71 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "subscription",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/subscription/",
+					"request": {
+						"url": "localhost:3000/subscription/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsImlhdCI6MTUxNjk2OTA4Nn0.s07UbMXhVCcKD1NeedIsznUcOLUKBBN6oaHOOoEz66A",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/subscription/",
+					"request": {
+						"url": "localhost:3000/subscription/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsImlhdCI6MTUxNjk2OTA4Nn0.s07UbMXhVCcKD1NeedIsznUcOLUKBBN6oaHOOoEz66A",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"blogId\": \"2a211720-09c3-4844-8618-3d35915426ff\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/subscription/d717fafb-3510-4d3e-9fd0-9deef25355f8",
+					"request": {
+						"url": "localhost:3000/subscription/d717fafb-3510-4d3e-9fd0-9deef25355f8",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsImlhdCI6MTUxNjk2OTA4Nn0.s07UbMXhVCcKD1NeedIsznUcOLUKBBN6oaHOOoEz66A",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
