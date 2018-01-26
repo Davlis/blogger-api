@@ -1,6 +1,11 @@
 import { DataTypes } from 'sequelize'
 
 const SCHEMA = {
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+    },
     owner: {
         type: DataTypes.UUID,
         allowNull: false,

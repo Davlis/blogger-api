@@ -159,17 +159,53 @@ export async function getMyBlogList(req, res) {
 }
 
 export async function addComment(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const { BlogComment, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { blogId } = req.params
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
+
+    const blogComment = await BlogComment.create(req.body)
+
+    res.json({ blogComment })
 }
 
 export async function removeComment(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const { BlogComment, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { blogId } = req.params
+    const { commentId } = req.params
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
+
+    const blogComment = await BlogComment.findById(commentId)
+
+    assertOrThrow(blogComment, Error, 'Blog comment not found')
+
+    await blogComment.destroy()
+
+    res.json({ status: 'ok' })
 }
 
 export async function updateComment(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
-}
+    const { BlogComment, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { blogId } = req.params
+    const { commentId } = req.params
 
-export async function reportComment(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
+
+    let blogComment = await BlogComment.findById(commentId)
+
+    assertOrThrow(blogComment, Error, 'Blog comment not found')
+
+    blogComment = await blogComment.update(req.body)
+
+    res.json({ blogComment })
 }

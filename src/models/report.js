@@ -4,6 +4,8 @@ export const REPORT_TYPES = {
     POST: 'post',
     BLOG: 'blog',
     USER: 'user',
+    BLOG_COMMENT: 'blog_comment',
+    POST_COMMENT: 'post_comment',
 }
 
 const SCHEMA = {
@@ -52,6 +54,22 @@ const SCHEMA = {
             key: 'id',
         },
     },
+    postComment: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'post_comments',
+            key: 'id',
+        },
+    },
+    blogComment: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'blog_comments',
+            key: 'id',
+        },
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -62,11 +80,13 @@ const SCHEMA = {
 export default function(sequelize) {
     const Report = sequelize.define('report', SCHEMA)
 
-    Report.associate = function({User, Post, Blog}) {
+    Report.associate = function({User, Post, Blog, PostComment, BlogComment }) {
         Report.belongsTo(User, { foreignKey: 'accuser' })
         Report.belongsTo(User, { as: 'ReportedUser', foreignKey: 'userId' })
         Report.belongsTo(Post)
         Report.belongsTo(Blog)
+        Report.belongsTo(PostComment)
+        Report.belongsTo(BlogComment)
     }
 
     return Report
