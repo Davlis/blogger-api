@@ -87,6 +87,7 @@ export default function(sequelize) {
 
     User.USER_ROLES = USER_ROLES
     User.USER_STATUS = USER_STATUS
+    User.TOKEN_TYPES = TOKEN_TYPES
 
     User.hashPassword = (password, salt) => {
         return createHmac('sha512', salt)

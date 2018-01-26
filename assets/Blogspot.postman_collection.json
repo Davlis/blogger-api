@@ -50,6 +50,46 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"url": "localhost:3000/auth/reset-password",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ddewid@gmail.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "set-password",
+					"request": {
+						"url": "localhost:3000/auth/set-password",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsInR5cGUiOiJyZXNldC1wYXNzd29yZCIsImlhdCI6MTUxNjk3NzA2MSwiZXhwIjoxNTE3MDYzNDYxfQ.OYELazdfZmlTASGdX22lFlkkjItoez4s08Mjq4IMmlI\",\n\t\"password\": \"1password\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},

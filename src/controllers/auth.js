@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken'
 import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES, USER_STATUS } from '../models/user'
 
