@@ -14,6 +14,11 @@ export const SCHEMA = {
         type: DataTypes.JSON,
         defaultValue: "",
     },
+    tags: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+        defaultValue: [],
+    },
     publishDate: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,

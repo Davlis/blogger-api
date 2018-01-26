@@ -79,47 +79,17 @@ export async function search(req, res) {
         sortable.push(_sortable[i])
     }
 
-    console.log(blogTfidf)
-
     res.json({ result: sortable })
 }
 
-export async function searchBlogs() {
+export async function searchBlogs(req, res) {
     const { Blog } = req.app.get('models')
     const { query, limit = 20, offset = 0 } = req.query
+    res.json({ status: 'NOT IMPLEMENTED' })
+}
 
-    const queryWords = normalizeWords(getWords(query))
-
-    const blogTfidf = {}
-    const blogs = await Blog.findAll({})
-
-    for (const blog of blogs) {
-        const words = normalizeWords(getWords(blog.title))
-
-        for (const queryWord of queryWords) {
-            if (words.includes(queryWord)) {
-                const result = getTf(queryWord, words)*getIdf(queryWord, posts, 'content')
-                if (result > 0) {
-                    if (!blogTfidf[blog.id]) {
-                        blogTfidf[blog.id] = result + customBlogConst
-                    } else {
-                        blogTfidf[blog.id] += result + customBlogConst
-                    }
-                }
-            }
-        }
-    }
-
-    const sortable = [];
-    for (const blogId in blogTfidf) {
-        sortable.push([blogId, blogTfidf[blogId]]);
-    }
-
-    sortable.sort(function(a, b) {
-        return a[1] - b[1];
-    });
-
-    console.log(sortable)
-
-    res.json({})
+export async function searchPosts(req, res) {
+    const { Post } = req.app.get('models')
+    const { query, limit = 20, offset = 0 } = req.query
+    res.json({ status: 'NOT IMPLEMENTED' })
 }

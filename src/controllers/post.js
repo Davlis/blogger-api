@@ -13,11 +13,12 @@ export async function createPost(req, res) {
     // TODO(dliszka): Add roles to user-blog. (owner of blog, shared)
     // assertOrThrow(blog.userId === user.id, Error, 'Forbidden')
 
-    const input = pick(req.body, 'title content publishDate')
+    const input = pick(req.body, 'title content publishDate tags')
 
     const post = await Post.create({
         title: input.title,
         content: input.content,
+        tags: input.tags,
         publishDate: input.publishDate,
         blogId,
     })

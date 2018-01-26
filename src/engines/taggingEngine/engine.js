@@ -34,10 +34,10 @@ async function start(sequelize, models) {
             const tfidf = {}
             for (const word of words) {
                 if (!tfidf[word]) {
-                    tfidf[word] = getTf(word, words)*getIdf(word, posts)
+                    tfidf[word] = getTf(word, words)*getIdf(word, posts, 'content')
 
                     console.log('tf(', word, ') = ', getTf(word, words))
-                    console.log('idf(', word, ') = ', getIdf(word, posts))
+                    console.log('idf(', word, ') = ', getIdf(word, posts, 'content'))
                     console.log('tfidf(', word, ') = ', tfidf[word])
                 }
             }
