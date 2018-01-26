@@ -88,6 +88,55 @@ export async function getBlogPosts(req, res) {
     res.json(posts)
 }
 
-export async function reportPost(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+export async function addComment(req, res) {
+    const { PostComment, Post } = req.app.get('models')
+    const { user } = res.locals
+    const { postId } = req.params
+
+    const post = await Post.findById(postId)
+
+    assertOrThrow(post, Error, 'Post not found')
+
+    const postComment = await PostComment.create(req.body)
+
+    res.json({ postComment })
+}
+
+export async function removeComment(req, res) {
+    const { PostComment, Post } = req.app.get('models')
+    const { user } = res.locals
+    const { postId } = req.params
+    const { commentId } = req.params
+
+    const post = await Post.findById(postId)
+
+    assertOrThrow(post, Error, 'Post not found')
+
+    const postComment = await PostComment.findById(commentId)
+
+    assertOrThrow(postComment, Error, 'Post comment not found')
+
+    await postComment.destroy()
+
+    res.json({ status: 'ok' })
+}
+
+export async function updateComment(req, res) {
+
+    const { PostComment, Post } = req.app.get('models')
+    const { user } = res.locals
+    const { postId } = req.params
+    const { commentId } = req.params
+
+    const post = await Post.findById(postId)
+
+    assertOrThrow(post, Error, 'Post not found')
+
+    let postComment = await BlogComment.findById(commentId)
+
+    assertOrThrow(postComment, Error, 'Post comment not found')
+
+    postComment = await postComment.update(req.body)
+
+    res.json({ postComment })
 }
