@@ -49,3 +49,19 @@ export async function deleteReport(req, res) {
     await report.destroy()
     res.send('ok')
 }
+
+export async function getReport(req, res) {
+    const { Report, User, Post, Blog } = req.app.get('models')
+    const { user } = res.locals
+    const { reportId } = req.params
+
+    assertOrThrow(user.role === USER_ROLES.ADMIN, Error, 'Insufficient rights')
+
+    const report = await Report.find({
+        where: {
+            id: reportId,
+        },
+        include: [{all: true,}]})
+
+    res.send(report)
+}
