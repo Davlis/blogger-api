@@ -1,6 +1,8 @@
 import { Router } from 'express'
 
 import Authenticate from './middleware/authenticate'
+import isAdmin from './middleware/isAdmin'
+
 import authRoutes from './routes/auth'
 import userRoutes from './routes/user'
 import homeRoutes from './routes/home'
@@ -9,6 +11,7 @@ import postRoutes from './routes/post'
 import reportRoutes from './routes/report'
 import subscriptionRoutes from './routes/subscription'
 import searchRoutes from './routes/search'
+import adminRoutes from './routes/admin'
 
 const router = Router()
 
@@ -20,5 +23,6 @@ router.use('/blogs/:blogId/posts', Authenticate, postRoutes)
 router.use('/report', Authenticate, reportRoutes)
 router.use('/subscription', Authenticate, subscriptionRoutes)
 router.use('/search', Authenticate, searchRoutes)
+router.use('/admin', Authenticate, isAdmin, adminRoutes)
 
 export default router

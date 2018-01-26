@@ -15,3 +15,12 @@ export async function deleteUserPost(req, res) {
 export async function deleteUserComment(req, res) {
     res.json({ status: 'NOT IMPLEMENTED' })
 }
+
+export async function getUsers(req, res) {
+    const { User } = req.app.get('models')
+    const { user } = res.locals
+
+    const users = await User.findAll({})
+
+    res.json({users})
+}
