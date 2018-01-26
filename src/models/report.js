@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 
-export const TYPES = {
+export const REPORT_TYPES = {
   POST: 'post',
   BLOG: 'blog',
   USER: 'user',
@@ -25,7 +25,7 @@ const SCHEMA = {
         allowNull: true,
     },
     type: {
-        type: DataTypes.ENUM(Object.values(TYPES)),
+        type: DataTypes.ENUM(Object.values(REPORT_TYPES)),
         allowNull: false,
     },
     postId: {
