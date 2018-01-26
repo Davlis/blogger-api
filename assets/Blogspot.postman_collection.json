@@ -414,23 +414,6 @@
 					"response": []
 				},
 				{
-					"name": "my-list",
-					"request": {
-						"url": "localhost:3000/blogs/my-list",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0YmJhNmJkLTUzODQtNDEwNi04YmE2LWM3NmE5ZGU5YzhhNSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTY3NzYsImV4cCI6MTUxNzA4MzE3Nn0.63cXwEqUDR4nRY8Bso2LeFy9gnIURspOZZe5VdwUUXA",
-								"description": ""
-							}
-						],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "comment",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/",
@@ -669,6 +652,40 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE4YzYzMzkwLTZkY2YtNGMyNC04MDEyLWExYmQ0ZWNkY2ZlNCIsImlhdCI6MTUxNjk2OTA4Nn0.s07UbMXhVCcKD1NeedIsznUcOLUKBBN6oaHOOoEz66A",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "posts my-list",
+					"request": {
+						"url": "localhost:3000/subscription/posts/my-list",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwMDM0ODIsImV4cCI6MTUxNzA4OTg4Mn0.BAMNn-NMq7QdiefhUqFg_ZqnMkHQQPPwcXcStMZhB94",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "blogs my-list",
+					"request": {
+						"url": "localhost:3000/subscription/blogs/my-list",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0YmJhNmJkLTUzODQtNDEwNi04YmE2LWM3NmE5ZGU5YzhhNSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTY3NzYsImV4cCI6MTUxNzA4MzE3Nn0.63cXwEqUDR4nRY8Bso2LeFy9gnIURspOZZe5VdwUUXA",
 								"description": ""
 							}
 						],

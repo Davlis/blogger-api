@@ -6,7 +6,6 @@ const router = Router()
 
 router.post('/', errorWrap(blogController.createBlog))
 router.get('/', errorWrap(blogController.getUserBlogs))
-router.get('/my-list', errorWrap(blogController.getMyBlogList))
 router.get('/:blogId', errorWrap(blogController.getBlog))
 router.put('/:blogId', errorWrap(blogController.updateBlog))
 router.delete('/:blogId', errorWrap(blogController.deleteBlog))

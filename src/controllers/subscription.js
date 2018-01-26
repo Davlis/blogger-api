@@ -43,3 +43,56 @@ export async function deleteSubscription(req, res) {
 
     res.json({status: 'ok'})
 }
+
+export async function getPostsFromMyList(req, res) {
+
+    const sequelize = req.app.get('sequelize')
+    const Op = sequelize.Op;
+    const { Subscription, Post } = req.app.get('models')
+    const { offset = 0, limit = 20  } = req.params
+    const { user } = res.locals
+
+    const subscriptions = await Subscription.findAll({
+        where: {
+            userId: user.id,
+        }
+    })
+
+    const blogIds = subscriptions.map(s => s.blogId)
+
+    const posts = await Post.findAndCountAll({
+        where: {
+            blogId: {
+                [Op.or]: blogIds
+            }
+        },
+        order: [['publishDate', 'DESC']],
+        limit,
+        offset,
+    })
+
+    res.json(posts)
+}
+
+export async function getMyBlogList(req, res) {
+    const { User, Blog, Subscription } = req.app.get('models')
+    const { offset = 0, limit = 20  } = req.params
+
+    const { user } = res.locals
+
+    const result = await Subscription.findAndCountAll({
+        where: {
+            userId: user.id,
+        },
+        include: [{
+            model: Blog,
+            include: [{
+                model: User,
+            }]
+        }],
+        limit,
+        offset,
+    })
+
+    res.json(result)
+}

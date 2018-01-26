@@ -70,8 +70,7 @@ export async function deletePost(req, res) {
 
 export async function getBlogPosts(req, res) {
     
-    const { User, Blog, Post } = req.app.get('models')
-    const { user } = res.locals
+    const { Blog, Post } = req.app.get('models')
     const { blogId } = req.params
     const input = pick(req.body, 'title')
 
@@ -83,6 +82,34 @@ export async function getBlogPosts(req, res) {
         where: {
             blogId,
         }
+    })
+
+    res.json(posts)
+}
+
+export async function getPostsFromMyList(req, res) {
+
+    const { Subscription, Post } = req.app.get('models')
+    const { offset = 0, limit = 20  } = req.params
+    const { user } = res.locals
+
+    const subscriptions = await Subscription.findAll({
+        where: {
+            userId: user.id,
+        }
+    })
+
+    const blogIds = subscriptions.map(s => s.blogId)
+
+    const posts = await Post.findAndCountAll({
+        where: {
+            blogId: {
+                $contains: blogIds
+            }
+        },
+        order: '"publishDate" DESC',
+        limit,
+        offset,
     })
 
     res.json(posts)

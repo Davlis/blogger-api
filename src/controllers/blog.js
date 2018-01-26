@@ -135,29 +135,6 @@ export async function revokeAccess(req, res) {
     res.json({ status: 'ok' })
 }
 
-export async function getMyBlogList(req, res) {
-    const { User, Blog, Subscription } = req.app.get('models')
-    const { offset = 0, limit = 20  } = req.params
-
-    const { user } = res.locals
-
-    const result = await Subscription.findAndCountAll({
-        where: {
-            userId: user.id,
-        },
-        include: [{
-            model: Blog,
-            include: [{
-                model: User,
-            }]
-        }],
-        limit,
-        offset,
-    })
-
-    res.json(result)
-}
-
 export async function addComment(req, res) {
     const { BlogComment, Blog } = req.app.get('models')
     const { user } = res.locals
