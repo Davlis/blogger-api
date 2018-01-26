@@ -136,8 +136,6 @@ export default function(sequelize) {
             html: passwordResetTemplate({ resetUrl }),
         }
 
-        console.log(email)
-
         const status = await mailer.send(email)
 
         return { email, status }
