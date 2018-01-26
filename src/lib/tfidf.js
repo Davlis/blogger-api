@@ -2,12 +2,12 @@ export function getTf(word, words) {
     return count(words, word)/words.length
 }
 
-export function getIdf(word, documents) {
+export function getIdf(word, documents, contentProperty) {
     const documentLength = documents.length
     let i = 0
 
     for (const document of documents) {
-        const words = getWords(document.content)
+        const words = normalizeWords(getWords(document[contentProperty]))
 
         if (words.includes(word)) {
             ++i
@@ -29,4 +29,8 @@ export function count(array, word) {
 
 export function getWords(content) {
     return content.split(/[ ,.;:?!@#$%^&*()]+/).filter(Boolean)
+}
+
+export function normalizeWords(words) {
+    return words.map(w => w.toLowerCase())
 }

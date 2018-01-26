@@ -4,6 +4,6 @@ import * as searchController from '../controllers/search'
 
 const router = Router()
 
-router.get('/:query', errorWrap(searchController.search))
+router.get('/', errorWrap(searchController.search))
 
 export default router

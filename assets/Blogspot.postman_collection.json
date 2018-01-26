@@ -493,6 +493,47 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "search",
+			"description": "",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/search?query=my first world",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "my first world",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzNWM3YTA2LTYxYjEtNDE3My1hZWY4LWJkYzZjOThiYmIzMyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTE3NDMsImV4cCI6MTUxNzA3ODE0M30.pG0JeGI2Ah3_D818ocE8GQiqCt-3KP1xXQESdcEcUyQ",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
