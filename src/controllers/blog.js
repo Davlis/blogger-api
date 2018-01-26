@@ -177,6 +177,28 @@ export async function addComment(req, res) {
     res.json(blogComment)
 }
 
+export async function getComments(req, res) {
+    const { BlogComment, Blog } = req.app.get('models')
+    const { offset = 0, limit = 20 } = req.query
+    const { blogId } = req.params
+    const body = req.body
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
+
+    const blogComments = await BlogComment.findAndCountAll({
+        where: {
+            blogId: blogId,
+        },
+        include: [{all: true}],
+        limit,
+        offset,
+    })
+
+    res.json(blogComments)
+}
+
 export async function removeComment(req, res) {
     const { BlogComment, Blog } = req.app.get('models')
     const { user } = res.locals

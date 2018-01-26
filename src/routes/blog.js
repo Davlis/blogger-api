@@ -13,6 +13,7 @@ router.delete('/:blogId', errorWrap(blogController.deleteBlog))
 router.post('/:blogId/access', errorWrap(blogController.grantAccess))
 router.delete('/:blogId/access', errorWrap(blogController.revokeAccess))
 router.post('/:blogId/comment', errorWrap(blogController.addComment))
+router.get('/:blogId/comment', errorWrap(blogController.getComments))
 router.delete('/:blogId/comment/:commentId', errorWrap(blogController.removeComment))
 router.put('/:blogId/comment/:commentId', errorWrap(blogController.updateComment))
 

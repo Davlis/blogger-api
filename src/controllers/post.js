@@ -88,6 +88,27 @@ export async function getBlogPosts(req, res) {
     res.json(posts)
 }
 
+export async function getComments(req, res) {
+    const { PostComment, Post } = req.app.get('models')
+    const { offset = 0, limit = 20 } = req.query
+    const { postId } = req.params
+
+    const post = await Post.findById(postId)
+
+    assertOrThrow(post, Error, 'Post not found')
+
+    const postComments = await PostComment.findAndCountAll({
+        where: {
+            postId: postId,
+        },
+        include: [{all: true}],
+        limit,
+        offset,
+    })
+
+    res.json(postComments)
+}
+
 export async function addComment(req, res) {
     const { PostComment, Post } = req.app.get('models')
     const { user } = res.locals
