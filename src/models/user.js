@@ -94,10 +94,20 @@ export default function(sequelize) {
             .digest('hex')
     }
 
-    User.getAuthToken = (id, salt) => {
-        return jwt.sign({
-            id,
-        }, salt)
+    User.prototype.issueAuthToken = function(salt, authConfig) {
+        return {
+            accessToken: this.issueToken(
+                TOKEN_TYPES.ACCESS_TOKEN,
+                salt,
+                authConfig.accessTokenLifetime
+            ),
+            refreshToken: this.issueToken(
+                TOKEN_TYPES.REFRESH_TOKEN,
+                salt,
+                authConfig.refreshTokenLifetime
+            ),
+            expiresIn: authConfig.accessTokenLifetime,
+        }
     }
 
     User.findByEmail = async (email) => {

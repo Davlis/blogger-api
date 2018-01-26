@@ -18,7 +18,7 @@ export async function login(req, res) {
         Error,
         'Invalid password')
 
-    const token = User.getAuthToken(user.id, config.salt)
+    const token = user.issueAuthToken(config.salt, config.auth)
 
     res.json({ user, token })       
 }
@@ -57,4 +57,33 @@ export async function resetPassword(req, res) {
     const response = await user.sendResetPasswordEmail(mailer, config)
     
     res.json(response)
+}
+
+export async function setPassword(req, res) {
+    const { salt } = req.app.get('config')
+    const { User } = req.app.get('models')
+    const body = req.body
+
+    let payload
+    try {
+        payload = jwt.verify(body.token, salt)
+    } catch (err) {
+        throw new Error('Invalid token')
+    }
+
+    assertOrThrow(
+        payload.type === User.TOKEN_TYPES.ACCESS_TOKEN ||
+        payload.type === User.TOKEN_TYPES.RESET_PASSWORD,
+        Error,
+        'Invalid token type'
+    )
+
+    const user = await User.findById(payload.id)
+
+    assertOrThrow(user, Error, 'Cant find a user with that token')
+
+    user.setPassword(body.password, salt)
+    await user.save()
+
+    res.json({ status: 'ok' })
 }

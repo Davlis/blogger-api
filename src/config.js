@@ -18,6 +18,8 @@ export default function generateConfig(path = '.env') {
             SENDGRID_DOMAIN: env.SENDGRID_DOMAIN,
         },
         auth: {
+            accessTokenLifetime: env.AUTH_ACCESS_TOKEN_LIFETIME,
+            refreshTokenLifetime: env.AUTH_REFRESH_TOKEN_LIFETIME,
             resetEmailTokenLifetime: env.AUTH_RESET_EMAIL_TOKEN_LIFETIME,
         },
         app: {
