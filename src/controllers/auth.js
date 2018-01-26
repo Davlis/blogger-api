@@ -1,4 +1,4 @@
-import { assertOrThrow } from '../utils'
+import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES, USER_STATUS } from '../models/user'
 
 export async function login(req, res) {
@@ -45,6 +45,8 @@ export async function register(req, res) {
 
 export async function resetPassword(req, res) {
     const { User } = req.app.get('models')
+    const mailer = req.app.get('mailer')
+    const config = req.app.get('config')
 
     const input = pick(req.body, 'email')
 
@@ -52,5 +54,13 @@ export async function resetPassword(req, res) {
 
     assertOrThrow(user, Error, 'User not found')
 
+    const msg = {
+        to: user.email,
+        from: config.mailer.SENDGRID_FROM,
+        subject: 'Reset password request',
+        html: `<strong>Someone requested password reset for ${user.email}</strong>`,
+    };
+
+    await mailer.send(msg)
     res.json({ status: 'ok' })
 }

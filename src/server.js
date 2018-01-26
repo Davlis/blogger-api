@@ -12,7 +12,7 @@ process.on('unhandledRejection', console.error)
 const config = generateConfig()
 const { sequelize, models } = initSequelize(config)
 
-mailer.setApiKey(config.SENDGRID_API_KEY);
+mailer.setApiKey(config.mailer.SENDGRID_API_KEY);
 
 const depedencies = { sequelize, models, mailer }
 
