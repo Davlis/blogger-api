@@ -100,7 +100,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"content\": \"This is my first blog\",\n\t\"publishDate\": \"2017-10-12\"\n}"
+									"raw": "{\n\t\"title\": \"My first journey\",\n\t\"content\": \"This is my first blog\",\n\t\"publishDate\": \"2017-10-12\"\n}"
 								},
 								"description": ""
 							},
@@ -145,7 +145,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"content\": \"My updated content\"\n}"
+									"raw": "{\n\t\"title\": \"My second journey\",\n\t\"content\": \"My updated content\"\n}"
 								},
 								"description": ""
 							},
