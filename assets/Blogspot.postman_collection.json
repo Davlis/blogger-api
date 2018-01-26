@@ -814,6 +814,91 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "localhost:3000/admin/users/block/74282cb9-ed8f-491c-87a8-583eab2134af",
+					"request": {
+						"url": "localhost:3000/admin/users/block/74282cb9-ed8f-491c-87a8-583eab2134af",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwMDExNzcsImV4cCI6MTUxNzA4NzU3N30.p3goKWNwadi1xJtZlbLqHFDL24h6vAhISp1nHxoXHEA",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/admin/users/unblock/74282cb9-ed8f-491c-87a8-583eab2134af",
+					"request": {
+						"url": "localhost:3000/admin/users/unblock/74282cb9-ed8f-491c-87a8-583eab2134af",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwMDExNzcsImV4cCI6MTUxNzA4NzU3N30.p3goKWNwadi1xJtZlbLqHFDL24h6vAhISp1nHxoXHEA",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/admin/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+					"request": {
+						"url": "localhost:3000/admin/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTQ4ODcsImV4cCI6MTUxNzA4MTI4N30.ZtfZl6hX3ARzl0RVDGbvK2cBUYUN-EoK56HHMik85ik",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/admin/posts/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+					"request": {
+						"url": "localhost:3000/admin/posts/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTQ4ODcsImV4cCI6MTUxNzA4MTI4N30.ZtfZl6hX3ARzl0RVDGbvK2cBUYUN-EoK56HHMik85ik",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/admin/blogs",
+					"request": {
+						"url": "localhost:3000/admin/blogs",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwMDE3MzUsImV4cCI6MTUxNzA4ODEzNX0.ZEDmztt1Cu_-q5SBngmngkJktq_3WeuGqOcBGauwGQI",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		}
