@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
+import mailer from '@sendgrid/mail'
 import router from './routes'
 import generateConfig from './config'
 import initSequelize from './database'
@@ -11,7 +12,9 @@ process.on('unhandledRejection', console.error)
 const config = generateConfig()
 const { sequelize, models } = initSequelize(config)
 
-const depedencies = { sequelize, models }
+mailer.setApiKey(config.SENDGRID_API_KEY);
+
+const depedencies = { sequelize, models, mailer }
 
 const app = initApp(config, depedencies)
 
@@ -26,6 +29,7 @@ export default function initApp(config, depedencies) {
     app.set('config', config)
     app.set('models', depedencies.models)
     app.set('sequelize', depedencies.sequelize)
+    app.set('mailer', depedencies.mailer)
 
     app.use(morgan('dev'))
 

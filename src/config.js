@@ -13,5 +13,9 @@ export default function generateConfig(path = '.env') {
             maxIdleTime: +(env.DATABASE_MAX_IDLE_TIME || 0),
             maxPoolSize: +env.DATABASE_MAX_POOL_SIZE || 100,
         },
+        mailer: {
+            SENDGRID_API_KEY: env.SENDGRID_API_KEY,
+            SENDGRID_FROM: env.SENDGRID_FROM,
+        }
     }
 }
