@@ -237,7 +237,7 @@
 							"response": []
 						},
 						{
-							"name": "delete comment",
+							"name": "comment",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/2fc5e5bd-41c3-45ce-a630-a940293d18eb",
 								"method": "DELETE",
@@ -254,7 +254,7 @@
 							"response": []
 						},
 						{
-							"name": "update comment",
+							"name": "comment",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/312e941a-4368-4883-a4aa-7b4e7aa29f6b",
 								"method": "PUT",
@@ -274,6 +274,23 @@
 									"mode": "raw",
 									"raw": "{\n\t\"content\": \"Hello world\"\n}"
 								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "comment",
+							"request": {
+								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+										"description": ""
+									}
+								],
+								"body": {},
 								"description": ""
 							},
 							"response": []
@@ -439,7 +456,7 @@
 					"response": []
 				},
 				{
-					"name": "update comment",
+					"name": "comment",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
 						"method": "PUT",
@@ -464,10 +481,27 @@
 					"response": []
 				},
 				{
-					"name": "delete comment",
+					"name": "comment",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
 						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "comment",
+					"request": {
+						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
