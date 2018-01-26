@@ -1,7 +1,31 @@
 import { assertOrThrow, pick } from '../utils'
 
 export async function blockUser(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const { User } = req.app.get('models')
+    const { userId } = req.params
+
+    const user = await User.findById(userId)
+
+    assertOrThrow(user, Error, 'User not found')
+
+    user.status = User.USER_STATUS.BLOCKED
+    await user.save()
+    
+    res.json({ user })
+}
+
+export async function unblockUser(req, res) {
+    const { User } = req.app.get('models')
+    const { userId } = req.params
+
+    const user = await User.findById(userId)
+
+    assertOrThrow(user, Error, 'User not found')
+
+    user.status = User.USER_STATUS.ACTIVE
+    await user.save()
+    
+    res.json({ user })
 }
 
 export async function deleteUserBlog(req, res) {

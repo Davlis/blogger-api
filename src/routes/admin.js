@@ -5,6 +5,8 @@ import * as adminController from '../controllers/admin'
 const router = Router()
 
 router.get('/users', errorWrap(adminController.getUsers))
+router.post('/users/block/:userId', errorWrap(adminController.blockUser))
+router.post('/users/unblock/:userId', errorWrap(adminController.unblockUser))
 router.get('/blogs', errorWrap(adminController.getBlogs))
 
 export default router
