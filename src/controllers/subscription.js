@@ -19,7 +19,16 @@ export async function subscribe(req, res) {
 }
 
 export async function getSubscriptions(req, res) {
-    res.json({ status: 'NOT IMPLEMENTED' })
+    const { Subscription } = req.app.get('models')
+    const { user } = res.locals
+
+    const subscriptions = await Subscription.findAll({
+        where: {
+            userId: user.id,
+        }
+    })
+
+    res.json(subscriptions)
 }
 
 export async function deleteSubscription(req, res) {
