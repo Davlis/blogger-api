@@ -11,7 +11,7 @@ export async function blockUser(req, res) {
     user.status = User.USER_STATUS.BLOCKED
     await user.save()
     
-    res.json({ user })
+    res.json(user)
 }
 
 export async function unblockUser(req, res) {
@@ -25,7 +25,7 @@ export async function unblockUser(req, res) {
     user.status = User.USER_STATUS.ACTIVE
     await user.save()
 
-    res.json({ user })
+    res.json(user)
 }
 
 export async function deleteUserComment(req, res) {
@@ -41,7 +41,7 @@ export async function getUsers(req, res) {
         limit,
     })
 
-    res.json({ users })
+    res.json(users)
 }
 
 export async function getBlogs(req, res) {
@@ -53,7 +53,7 @@ export async function getBlogs(req, res) {
         limit,
     })
 
-    res.json({ blogs })
+    res.json(blogs)
 }
 
 export async function deleteBlog(req, res) {

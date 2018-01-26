@@ -79,7 +79,7 @@ export async function search(req, res) {
         sortable.push(_sortable[i])
     }
 
-    res.json({ result: sortable })
+    res.json(sortable)
 }
 
 export async function searchBlogsByTags(req, res) {
@@ -98,7 +98,7 @@ export async function searchBlogsByTags(req, res) {
         offset,
     })
 
-    res.json({blogs})
+    res.json(blogs)
 }
 
 export async function searchPostsByTags(req, res) {
@@ -117,5 +117,5 @@ export async function searchPostsByTags(req, res) {
         offset,
     })
 
-    res.json({posts})
+    res.json(posts)
 }

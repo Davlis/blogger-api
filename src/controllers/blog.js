@@ -155,7 +155,7 @@ export async function getMyBlogList(req, res) {
         offset,
     })
 
-    res.json({ result })
+    res.json(result)
 }
 
 export async function addComment(req, res) {
