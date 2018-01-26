@@ -88,8 +88,21 @@ export async function searchBlogs(req, res) {
     res.json({ status: 'NOT IMPLEMENTED' })
 }
 
-export async function searchPosts(req, res) {
+export async function searchPostsByTags(req, res) {
     const { Post } = req.app.get('models')
     const { query, limit = 20, offset = 0 } = req.query
-    res.json({ status: 'NOT IMPLEMENTED' })
+
+    const queryWords = normalizeWords(getWords(query))
+
+    const posts = await Post.findAndCountAll({
+        where: {
+            tags: {
+                $contains: queryWords
+            }
+        },
+        limit,
+        offset,
+    })
+
+    res.json({posts})
 }

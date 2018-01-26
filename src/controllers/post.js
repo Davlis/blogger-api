@@ -1,4 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
+import { normalizeWords } from '../lib/tfidf'
 
 export async function createPost(req, res) {
 
@@ -18,7 +19,7 @@ export async function createPost(req, res) {
     const post = await Post.create({
         title: input.title,
         content: input.content,
-        tags: input.tags,
+        tags: normalizeWords(input.tags),
         publishDate: input.publishDate,
         blogId,
     })
