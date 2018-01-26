@@ -9,7 +9,7 @@ async function go() {
 
     const { sequelize, models } = initSequelizeFromConfig(config)
     
-    generateAdminUser(models)
+    await generateAdminUser(models)
 
     sequelize.close()
 }
@@ -19,11 +19,10 @@ export async function generateAdminUser({ User }) {
     const root = User.build({
         role: User.USER_ROLES.ADMIN,
         email: process.env.ROOT_EMAIL,
-        firstName: 'Admin',
-        lastName: 'Admin',
+        firstName: process.env.ROOT_FIRST_NAME,
+        lastName: process.env.ROOT_LASTNAME,
     })
 
     root.setPassword(process.env.ROOT_PASSWORD, process.env.SALT)
-
-    console.log(root)
+    await root.save()
 }
