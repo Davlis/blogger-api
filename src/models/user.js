@@ -7,6 +7,11 @@ export const USER_ROLES = {
     CUSTOMER: 'customer',
 }
 
+export const USER_STATUS = {
+    ACTIVE: 'active',
+    BLOCKED: 'blocked',
+}
+
 const SCHEMA = {
     id: {
         type: DataTypes.UUID,
@@ -46,6 +51,11 @@ const SCHEMA = {
     role: {
         type: DataTypes.ENUM(Object.values(USER_ROLES)),
         allowNull: false,
+    },
+    status: {
+        type: DataTypes.ENUM(Object.values(USER_STATUS)),
+        allowNull: false,
+        defaultValue: USER_STATUS.ACTIVE,
     },
     photoUrl: {
         type: DataTypes.STRING(511),
