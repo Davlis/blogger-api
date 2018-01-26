@@ -2,6 +2,7 @@ import { assertOrThrow } from '../utils'
 import { USER_ROLES } from '../models/user'
 
 export async function login(req, res) {
+
     const config = res.app.get('config')
     const { email, password } = req.body
     const { User } = req.app.get('models')
@@ -21,6 +22,7 @@ export async function login(req, res) {
 }
 
 export async function register(req, res) {
+
     const config = res.app.get('config')
     const { email, password, lastName, firstName } = req.body
     const { User } = req.app.get('models')

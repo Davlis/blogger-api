@@ -1,8 +1,8 @@
 import { load as dotenvLoad } from 'dotenv'
 
-export default function generateConfig() {
+export default function generateConfig(path = '.env') {
   
-    const env = dotenvLoad({ path: '.env' }).parsed || process.env
+    const env = dotenvLoad({ path }).parsed || process.env
 
     return {
         env: env.ENV,

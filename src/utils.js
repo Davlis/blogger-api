@@ -19,7 +19,7 @@ export function pick(object, properties) {
 
     properties = properties.split(' ')
 
-    for (let [k, v] of Object.entries(object)) {
+    for (const [k, v] of Object.entries(object)) {
         if (properties.includes(k)) {
             _object[k] = v
         }

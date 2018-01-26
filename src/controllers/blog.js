@@ -1,6 +1,7 @@
 import { assertOrThrow, pick } from '../utils'
 
 export async function createBlog(req, res) {
+
     const sequelize = req.app.get('sequelize')
     const { Blog, UserBlog } = req.app.get('models')
     const { user } = res.locals
@@ -25,6 +26,7 @@ export async function createBlog(req, res) {
 }
 
 export async function getUserBlogs(req, res) {
+    
     const { UserBlog, Blog } = req.app.get('models')
     const { user } = res.locals
 

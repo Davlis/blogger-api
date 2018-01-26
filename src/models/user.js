@@ -66,6 +66,8 @@ const SCHEMA = {
 export default function(sequelize) {
     const User = sequelize.define('user', SCHEMA);
 
+    User.USER_ROLES = USER_ROLES
+
     User.hashPassword = (password, salt) => {
         return createHmac('sha512', salt)
             .update(password)
@@ -85,6 +87,10 @@ export default function(sequelize) {
             },
         })
         return user
+    }
+
+    User.prototype.setPassword = function (val, salt) {
+        this.setDataValue('passhash', User.hashPassword(val, salt))
     }
 
     return User

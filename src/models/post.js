@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 
-const SCHEMA = {
+export const SCHEMA = {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
