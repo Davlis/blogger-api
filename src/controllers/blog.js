@@ -217,5 +217,5 @@ export async function updateComment(req, res) {
         owner: user.id,
     })
 
-    res.json({ blogComment })
+    res.json(blogComment)
 }

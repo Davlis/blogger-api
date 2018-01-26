@@ -92,14 +92,19 @@ export async function addComment(req, res) {
     const { PostComment, Post } = req.app.get('models')
     const { user } = res.locals
     const { postId } = req.params
+    const body = req.body
 
     const post = await Post.findById(postId)
 
     assertOrThrow(post, Error, 'Post not found')
 
-    const postComment = await PostComment.create(req.body)
+    const postComment = await PostComment.create({
+        content: body.content,
+        postId,
+        owner: user.id,
+    })
 
-    res.json({ postComment })
+    res.json(postComment)
 }
 
 export async function removeComment(req, res) {
@@ -127,16 +132,21 @@ export async function updateComment(req, res) {
     const { user } = res.locals
     const { postId } = req.params
     const { commentId } = req.params
+    const body = req.body
 
     const post = await Post.findById(postId)
 
     assertOrThrow(post, Error, 'Post not found')
 
-    let postComment = await BlogComment.findById(commentId)
+    let postComment = await PostComment.findById(commentId)
 
     assertOrThrow(postComment, Error, 'Post comment not found')
 
-    postComment = await postComment.update(req.body)
+    postComment = await postComment.update({
+        content: body.content,
+        postId,
+        owner: user.id,        
+    })
 
-    res.json({ postComment })
+    res.json(postComment)
 }

@@ -124,7 +124,7 @@
 						{
 							"name": "localhost:3000/blogs/:blogId/posts",
 							"request": {
-								"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333/posts",
+								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts",
 								"method": "POST",
 								"header": [
 									{
@@ -134,13 +134,13 @@
 									},
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
 										"description": ""
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"title\": \"My first journey\",\n\t\"content\": \"This is my first blog\",\n\t\"publishDate\": \"2017-10-12\"\n}"
+									"raw": "{\n\t\"title\": \"My first journey\",\n\t\"content\": \"This is my first blog\",\n\t\"tags\": [\"journey\"],\n\t\"publishDate\": \"2017-10-12\"\n}"
 								},
 								"description": ""
 							},
@@ -206,6 +206,73 @@
 								"body": {
 									"mode": "raw",
 									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "comment",
+							"request": {
+								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"content\": \"hhehe post\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "delete comment",
+							"request": {
+								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/2fc5e5bd-41c3-45ce-a630-a940293d18eb",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+										"description": ""
+									}
+								],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "update comment",
+							"request": {
+								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/312e941a-4368-4883-a4aa-7b4e7aa29f6b",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"content\": \"Hello world\"\n}"
 								},
 								"description": ""
 							},
@@ -338,6 +405,73 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ0YmJhNmJkLTUzODQtNDEwNi04YmE2LWM3NmE5ZGU5YzhhNSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTY3NzYsImV4cCI6MTUxNzA4MzE3Nn0.63cXwEqUDR4nRY8Bso2LeFy9gnIURspOZZe5VdwUUXA",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "comment",
+					"request": {
+						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": \"Very good blog\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\": \"Very bad blog\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTg5OTUsImV4cCI6MTUxNzA4NTM5NX0.6ptwFVoo5UOEZ7RLqOhon6nh3kf-Khg1F5p9C0LsJmk",
 								"description": ""
 							}
 						],
