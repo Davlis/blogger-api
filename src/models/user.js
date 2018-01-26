@@ -1,6 +1,7 @@
 import { DataTypes } from 'sequelize'
 import { createHmac } from 'crypto'
 import jwt from 'jsonwebtoken'
+import { compileTemplate } from '../utils'
 
 export const USER_ROLES = {
     ADMIN: 'admin',
@@ -10,6 +11,12 @@ export const USER_ROLES = {
 export const USER_STATUS = {
     ACTIVE: 'actived',
     BLOCKED: 'blocked',
+}
+
+export const TOKEN_TYPES = {
+    ACCESS_TOKEN: 'access-token',
+    REFRESH_TOKEN: 'refresh-token',
+    RESET_PASSWORD: 'reset-password',
 }
 
 const SCHEMA = {
@@ -73,6 +80,8 @@ const SCHEMA = {
     },
 }
 
+const passwordResetTemplate = compileTemplate('reset-password')
+
 export default function(sequelize) {
     const User = sequelize.define('user', SCHEMA)
 
@@ -102,6 +111,36 @@ export default function(sequelize) {
 
     User.prototype.setPassword = function (val, salt) {
         this.setDataValue('passhash', User.hashPassword(val, salt))
+    }
+
+    User.prototype.issueToken = function(type, salt, expiresIn) {
+        return jwt.sign({
+            id: this.id,
+            type: type,
+        }, salt, { expiresIn })
+    }
+
+    User.prototype.sendResetPasswordEmail = async function(mailer, config) {
+        const resetEmailToken = this.issueToken(
+            TOKEN_TYPES.RESET_PASSWORD,
+            config.salt,
+            config.auth.resetEmailTokenLifetime
+        )
+
+        const resetUrl = `${config.app.domain}/password-reset?token=${resetEmailToken}`
+
+        const email = {
+            from: `Blogger helper <no-reply@${config.mailer.SENDGRID_DOMAIN}>`,
+            to: this.email,
+            subject: 'Password reset',
+            html: passwordResetTemplate({ resetUrl }),
+        }
+
+        console.log(email)
+
+        const status = await mailer.send(email)
+
+        return { email, status }
     }
 
     return User

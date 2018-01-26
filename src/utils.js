@@ -33,7 +33,7 @@ export function pick(object, properties) {
 }
 
 export function compileTemplate(fileName, pretty = false) {
-    const tpl = compileFile(pathResolve(__dirname, `./templates/${fileName}.pug`), { pretty })
+    const tpl = compileFile(pathResolve(__dirname, `../templates/${fileName}.pug`), { pretty })
 
     return (input) => tpl(Object.assign({}, { moment }, input))
 }

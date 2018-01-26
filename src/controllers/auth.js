@@ -54,13 +54,7 @@ export async function resetPassword(req, res) {
 
     assertOrThrow(user, Error, 'User not found')
 
-    const msg = {
-        to: user.email,
-        from: config.mailer.SENDGRID_FROM,
-        subject: 'Reset password request',
-        html: `<strong>Someone requested password reset for ${user.email}</strong>`,
-    };
-
-    await mailer.send(msg)
+    await user.sendResetPasswordEmail(mailer, config)
+    
     res.json({ status: 'ok' })
 }

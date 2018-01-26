@@ -15,7 +15,13 @@ export default function generateConfig(path = '.env') {
         },
         mailer: {
             SENDGRID_API_KEY: env.SENDGRID_API_KEY,
-            SENDGRID_FROM: env.SENDGRID_FROM,
+            SENDGRID_DOMAIN: env.SENDGRID_DOMAIN,
+        },
+        auth: {
+            resetEmailTokenLifetime: env.AUTH_RESET_EMAIL_TOKEN_LIFETIME,
+        },
+        app: {
+            domain: env.DOMAIN || 'localhost',
         }
     }
 }
