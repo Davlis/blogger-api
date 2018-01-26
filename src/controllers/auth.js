@@ -40,7 +40,10 @@ export async function register(req, res) {
         role: USER_ROLES.CUSTOMER,
     })
 
-    res.json(user)
+    res.json({
+        user,
+        token: user.issueAuthToken(config.salt, config.auth),
+    })
 }
 
 export async function resetPassword(req, res) {
