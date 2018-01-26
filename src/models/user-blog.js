@@ -20,7 +20,7 @@ const SCHEMA = {
 }
 
 export default function(sequelize) {
-    const UserBlog = sequelize.define('user_blog', SCHEMA);
+    const UserBlog = sequelize.define('user_blog', SCHEMA)
 
     UserBlog.associate = function({ User, Blog }) {
         UserBlog.belongsTo(User)

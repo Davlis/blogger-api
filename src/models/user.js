@@ -64,7 +64,7 @@ const SCHEMA = {
 }
 
 export default function(sequelize) {
-    const User = sequelize.define('user', SCHEMA);
+    const User = sequelize.define('user', SCHEMA)
 
     User.USER_ROLES = USER_ROLES
 

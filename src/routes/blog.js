@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { errorWrap } from '../utils'
 import * as blogController from '../controllers/blog'
 
-const router = Router();
+const router = Router()
 
 router.post('/', errorWrap(blogController.createBlog))
 router.get('/', errorWrap(blogController.getUserBlogs))

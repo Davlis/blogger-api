@@ -21,7 +21,7 @@ const SCHEMA = {
 }
 
 export default function(sequelize) {
-    const Blog = sequelize.define('blog', SCHEMA);
+    const Blog = sequelize.define('blog', SCHEMA)
 
     Blog.associate = function({ User }) {
         Blog.belongsTo(User, { foreignKey: 'owner' })

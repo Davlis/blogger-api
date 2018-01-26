@@ -25,7 +25,7 @@ export const SCHEMA = {
 }
 
 export default function(sequelize) {
-    const Post = sequelize.define('post', SCHEMA);
+    const Post = sequelize.define('post', SCHEMA)
 
     Post.associate = function({ Blog }) {
         Post.belongsTo(Blog, { foreignKey: 'blogId' })

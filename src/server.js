@@ -53,5 +53,5 @@ export default function initApp(config, depedencies) {
         })
     })
 
-    return app;
+    return app
 }
