@@ -40,7 +40,7 @@ export async function getUserBlogs(req, res) {
 }
 
 export async function getBlog(req, res) {
-    const { Blog, User } = req.app.get('models')
+    const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
 
@@ -52,7 +52,7 @@ export async function getBlog(req, res) {
 }
 
 export async function updateBlog(req, res) {
-    const { Blog, User } = req.app.get('models')
+    const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
     const input = pick(req.body, 'title')
@@ -67,7 +67,7 @@ export async function updateBlog(req, res) {
 }
 
 export async function deleteBlog(req, res) {
-    const { Blog, User } = req.app.get('models')
+    const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
     const input = pick(req.body, 'title')
