@@ -10,6 +10,11 @@ const SCHEMA = {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    tags: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+        defaultValue: [],
+    },
     owner: {
         type: DataTypes.UUID,
         allowNull: false,

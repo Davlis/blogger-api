@@ -6,5 +6,6 @@ const router = Router()
 
 router.get('/', errorWrap(searchController.search))
 router.get('/posts/tag', errorWrap(searchController.searchPostsByTags))
+router.get('/blogs/tag', errorWrap(searchController.searchBlogsByTags))
 
 export default router
