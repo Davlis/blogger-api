@@ -918,6 +918,39 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "user",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/user/photo",
+					"request": {
+						"url": "localhost:3000/user/photo",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwNDQzODksImV4cCI6MTUxNzEzMDc4OX0.ZjHLRsNsXlLRz6I8QETv59nV5RC2tKett_1cF9CjS54",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "podcho.png",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
