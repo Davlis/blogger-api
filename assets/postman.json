@@ -951,6 +951,37 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "support",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/support",
+					"request": {
+						"url": "localhost:3000/support",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwNDQzODksImV4cCI6MTUxNzEzMDc4OX0.ZjHLRsNsXlLRz6I8QETv59nV5RC2tKett_1cF9CjS54",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"Bug request\",\n\t\"body\": \"I can't change my profile picture.\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
