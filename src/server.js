@@ -3,6 +3,7 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import mailer from '@sendgrid/mail'
+import cloudinary from 'cloudinary'
 import router from './routes'
 import generateConfig from './config'
 import initSequelize from './database'
@@ -14,7 +15,13 @@ const { sequelize, models } = initSequelize(config)
 
 mailer.setApiKey(config.mailer.SENDGRID_API_KEY);
 
-const depedencies = { sequelize, models, mailer }
+cloudinary.config({ 
+    cloud_name: config.cloud.name,
+    api_key: config.cloud.apiKey,
+    api_secret: config.cloud.apiSecret,
+})
+
+const depedencies = { sequelize, models, mailer, cloudinary }
 
 const app = initApp(config, depedencies)
 
@@ -30,6 +37,7 @@ export default function initApp(config, depedencies) {
     app.set('models', depedencies.models)
     app.set('sequelize', depedencies.sequelize)
     app.set('mailer', depedencies.mailer)
+    app.set('cloudinary', depedencies.cloudinary)
 
     app.use(morgan('dev'))
 

@@ -24,6 +24,11 @@ export default function generateConfig(path = '.env') {
         },
         app: {
             domain: env.DOMAIN || 'localhost',
-        }
+        },
+        cloud: {
+            name: env.CLOUDINARY_CLOUD_NAME,
+            apiKey: env.CLOUDINARY_API_KEY,
+            apiSecret: env.CLOUDINARY_API_SECRET,
+        },
     }
 }
