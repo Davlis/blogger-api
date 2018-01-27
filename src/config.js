@@ -8,6 +8,7 @@ export default function generateConfig(path = '.env') {
         env: env.ENV,
         port: env.PORT,
         salt: env.SALT,
+        supportEmail: env.SUPPORT_EMAIL,
         postgres: {
             uri: env.DATABASE_URL,
             maxIdleTime: +(env.DATABASE_MAX_IDLE_TIME || 0),

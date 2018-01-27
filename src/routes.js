@@ -12,6 +12,7 @@ import reportRoutes from './routes/report'
 import subscriptionRoutes from './routes/subscription'
 import searchRoutes from './routes/search'
 import adminRoutes from './routes/admin'
+import supportRoutes from './routes/support'
 
 const router = Router()
 
@@ -24,5 +25,6 @@ router.use('/report', Authenticate, reportRoutes)
 router.use('/subscription', Authenticate, subscriptionRoutes)
 router.use('/search', Authenticate, searchRoutes)
 router.use('/admin', Authenticate, isAdmin, adminRoutes)
+router.use('/support', Authenticate, supportRoutes)
 
 export default router
