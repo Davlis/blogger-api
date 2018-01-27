@@ -22,6 +22,15 @@ export async function updateUser(req, res) {
     res.json(user)
 }
 
+export async function addUserPhoto(req, res) {
+    const { user, file } = res.locals
+
+    user.photoUrl = file.url
+    await user.save()
+
+    res.json({ user, file })
+}
+
 export async function deleteUser(req, res) {
 
     const { User } = req.app.get('models')
