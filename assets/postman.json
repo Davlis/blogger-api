@@ -90,6 +90,26 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"url": "localhost:3000/auth/refresh-token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJyZWZyZXNoLXRva2VuIiwiaWF0IjoxNTE3Njg1MzI5LCJleHAiOjE1NDkyMjEzMjl9.6Fd9gJHW3H47r9UGSoQYsj7dUMWhDUKha7IHbz8CXCs\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
