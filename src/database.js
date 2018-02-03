@@ -9,6 +9,7 @@ import definePostComment from './models/post-comment'
 import defineReport from './models/report'
 import defineNotification from './models/notification'
 import defineSubscription from './models/subscription'
+import defineUserUpload from './models/user-upload'
 
 export default function initSequelizeFromConfig(config) {
 
@@ -26,6 +27,7 @@ export default function initSequelizeFromConfig(config) {
         Report: defineReport(sequelize),
         Notification: defineNotification(sequelize),
         Subscription: defineSubscription(sequelize),
+        UserUpload: defineUserUpload(sequelize),
     }
 
     Object.keys(models).forEach((name) => {

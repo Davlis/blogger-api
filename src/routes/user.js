@@ -8,5 +8,7 @@ const router = Router()
 router.put('/', errorWrap(userController.updateUser))
 router.delete('/', errorWrap(userController.deleteUser))
 router.put('/photo', uploadMiddleware, errorWrap(userController.addUserPhoto))
+router.put('/upload', uploadMiddleware, errorWrap(userController.uploadFile))
+router.get('/upload', errorWrap(userController.getUserFiles))
 
 export default router

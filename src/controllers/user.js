@@ -40,3 +40,30 @@ export async function deleteUser(req, res) {
 
     res.json({ status: 'ok' })
 }
+
+export async function uploadFile(req, res) {
+
+    const { user, file } = res.locals
+    const { UserUpload } = req.app.get('models')
+
+    const userUpload = await UserUpload.create({
+        uploadUrl: file.url,
+        userId: user.id,
+    })
+    
+    res.json({ userUpload })
+}
+
+export async function getUserFiles(req, res) {
+
+    const { user } = res.locals
+    const { UserUpload } = req.app.get('models')
+
+    const userUploads = await UserUpload.findAll({
+        where: {
+            userId: user.id,
+        }
+    })
+    
+    res.json(userUploads)    
+}
