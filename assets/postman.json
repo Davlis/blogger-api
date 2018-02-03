@@ -949,6 +949,60 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "localhost:3000/user/upload",
+					"request": {
+						"url": "localhost:3000/user/upload",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc2NzQyNjIsImV4cCI6MTUxNzc2MDY2Mn0.sTHzk63mvpX1ovR-o5F7CfcPu0mzQAhsI7RpWASCZdY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "podcho",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/user/upload",
+					"request": {
+						"url": "localhost:3000/user/upload",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc2NzQyNjIsImV4cCI6MTUxNzc2MDY2Mn0.sTHzk63mvpX1ovR-o5F7CfcPu0mzQAhsI7RpWASCZdY",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "podcho",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
