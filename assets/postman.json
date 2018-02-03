@@ -1023,6 +1023,48 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "localhost:3000/user",
+					"request": {
+						"url": "localhost:3000/user",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc2ODU2NzYsImV4cCI6MTUxNzc3MjA3Nn0.PwvxBk5irUdBV_jRksM70VhNuD-3bZMy2ZAXJt4-J7s",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"dawidd@gmail.com\",\n\t\"password\": \"1password\",\n\t\"firstName\": \"Davlis\",\n\t\"lastName\": \"Liszka\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/user",
+					"request": {
+						"url": "localhost:3000/user",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc2ODU2NzYsImV4cCI6MTUxNzc3MjA3Nn0.PwvxBk5irUdBV_jRksM70VhNuD-3bZMy2ZAXJt4-J7s",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
