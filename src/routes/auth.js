@@ -8,5 +8,6 @@ router.post('/login', errorWrap(authController.login))
 router.post('/register', errorWrap(authController.register))
 router.post('/reset-password', errorWrap(authController.resetPassword))
 router.post('/set-password', errorWrap(authController.setPassword))
+router.post('/refresh-token', errorWrap(authController.refreshToken))
 
 export default router

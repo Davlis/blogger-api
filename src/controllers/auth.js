@@ -91,3 +91,26 @@ export async function setPassword(req, res) {
 
     res.json({ status: 'ok' })
 }
+
+export async function refreshToken(req, res) {
+
+    const { salt, auth: authConfig } = req.app.get('config')
+
+    const { User } = req.app.get('models')
+    const { refreshToken } = req.body
+
+    console.log(refreshToken)
+
+    let payload
+    try {
+        payload = jwt.verify(refreshToken, salt)
+    } catch (err) {
+        console.log(err)
+    }
+
+    let user = await User.findById(payload.id)
+
+    assertOrThrow(user, Error, 'User not found')
+
+    res.json(user.issueAuthToken(salt, authConfig))
+}
