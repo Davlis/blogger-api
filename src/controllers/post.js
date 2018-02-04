@@ -14,14 +14,16 @@ export async function createPost(req, res) {
     // TODO(dliszka): Add roles to user-blog. (owner of blog, shared)
     // assertOrThrow(blog.userId === user.id, Error, 'Forbidden')
 
-    const input = pick(req.body, 'title content publishDate tags')
+    const input = pick(req.body, 'title content photoUrl publishDate tags')
 
     const post = await Post.create({
         title: input.title,
         content: input.content,
         tags: normalizeWords(input.tags),
+        photoUrl: input.photoUrl,
         publishDate: input.publishDate,
         blogId,
+        ownerId: user.id,
     })
 
     res.json(post)
@@ -29,10 +31,16 @@ export async function createPost(req, res) {
 
 export async function getPost(req, res) {
 
-    const { Post } = req.app.get('models')
-    const { postId } = req.params
+    const { Post, Blog } = req.app.get('models')
+    const { postId, blogId } = req.params
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
 
     const post = await Post.findById(postId)
+
+    assertOrThrow(post, Error, 'Post not found')
 
     res.json(post)
 }
@@ -40,8 +48,12 @@ export async function getPost(req, res) {
 export async function updatePost(req, res) {
 
     const { Post } = req.app.get('models')
-    const { postId } = req.params
+    const { postId, blogId } = req.params
     const body = req.body
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
 
     const post = await Post.findById(postId)
 
@@ -49,7 +61,7 @@ export async function updatePost(req, res) {
 
     body.tags = normalizeWords(body.tags)
 
-    await post.update(body)
+    await post.update(Object.assign({modifierId: user.id}, body)
 
     res.json(post)
 }
@@ -57,7 +69,11 @@ export async function updatePost(req, res) {
 export async function deletePost(req, res) {
 
     const { Post } = req.app.get('models')
-    const { postId } = req.params
+    const { postId, blogId } = req.params
+
+    const blog = await Blog.findById(blogId)
+
+    assertOrThrow(blog, Error, 'Blog not found')
 
     const post = await Post.findById(postId)
 
@@ -72,7 +88,6 @@ export async function getBlogPosts(req, res) {
     
     const { Blog, Post } = req.app.get('models')
     const { blogId } = req.params
-    const input = pick(req.body, 'title')
 
     const blog = await Blog.findById(blogId)
 
@@ -116,6 +131,7 @@ export async function getPostsFromMyList(req, res) {
 }
 
 export async function getComments(req, res) {
+
     const { PostComment, Post } = req.app.get('models')
     const { offset = 0, limit = 20 } = req.query
     const { postId } = req.params
@@ -137,6 +153,7 @@ export async function getComments(req, res) {
 }
 
 export async function addComment(req, res) {
+
     const { PostComment, Post } = req.app.get('models')
     const { user } = res.locals
     const { postId } = req.params
@@ -156,6 +173,7 @@ export async function addComment(req, res) {
 }
 
 export async function removeComment(req, res) {
+    
     const { PostComment, Post } = req.app.get('models')
     const { user } = res.locals
     const { postId } = req.params
