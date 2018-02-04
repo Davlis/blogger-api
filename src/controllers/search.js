@@ -119,3 +119,36 @@ export async function searchPostsByTags(req, res) {
 
     res.json(posts)
 }
+
+export async function searchUserBlogs(req, res) {
+
+    const sequelize = req.app.get('sequelize')
+    const { Blog } = req.app.get('models')
+    const { query, limit = 20, offset = 0 } = req.query
+
+    const queryWords = normalizeWords(getWords(query))
+
+    const Op = sequelize.Op
+
+    const regexp = '['+queryWords.join('|')+']'
+
+    const blogs = await Blog.findAndCountAll({
+        where: {
+            [Op.or]: [{
+                tags: {
+                    $contains: queryWords
+                }},
+                {   
+                    title: {[Op.regexp]: regexp}
+                },
+                {   
+                    subtitle: {[Op.regexp]: regexp}
+                },
+            ]
+        },
+        limit,
+        offset,
+    })
+
+    res.json(blogs)    
+}
