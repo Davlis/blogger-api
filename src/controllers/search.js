@@ -130,7 +130,7 @@ export async function searchUserBlogs(req, res) {
 
     const Op = sequelize.Op
 
-    const regexp = '['+queryWords.join('|')+']'
+    const regexp = '('+queryWords.join('|')+')'
 
     const blogs = await Blog.findAndCountAll({
         where: {
@@ -139,10 +139,10 @@ export async function searchUserBlogs(req, res) {
                     $contains: queryWords
                 }},
                 {   
-                    title: {[Op.regexp]: regexp}
+                    title: {[Op.iRegexp]: regexp}
                 },
                 {   
-                    subtitle: {[Op.regexp]: regexp}
+                    subtitle: {[Op.iRegexp]: regexp}
                 },
             ]
         },
