@@ -42,6 +42,7 @@ export async function getUserBlogs(req, res) {
 }
 
 export async function getBlog(req, res) {
+    
     const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
@@ -54,10 +55,11 @@ export async function getBlog(req, res) {
 }
 
 export async function updateBlog(req, res) {
+
     const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
-    const input = pick(req.body, 'title')
+    const input = pick(req.body, 'title subtitle photoUrl')
 
     const blog = await Blog.findById(blogId)
 
@@ -69,6 +71,7 @@ export async function updateBlog(req, res) {
 }
 
 export async function deleteBlog(req, res) {
+
     const { Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
