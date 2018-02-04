@@ -33,9 +33,10 @@ export async function getUserBlogs(req, res) {
     const { user } = res.locals
 
     const blogs = await UserBlog.findAll({
-        userId: user.id,
-        include: [Blog,],
-        attributes: ['blogId',]
+        where: {
+            userId: user.id,
+        },
+        include: [{all: true}],
     })
 
     res.json(blogs)
