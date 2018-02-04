@@ -43,7 +43,7 @@ export async function getUserBlogs(req, res) {
 
 export async function getBlog(req, res) {
     
-    const { Blog } = req.app.get('models')
+    const { Blog, UserBlog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
 
@@ -51,7 +51,17 @@ export async function getBlog(req, res) {
 
     assertOrThrow(blog, Error, 'Blog not found')
 
-    res.json(blog)
+    const userBlog = await UserBlog.find({where: {
+        userId: user.id,
+    }})
+
+    const _blog = blog.toJSON()
+
+    _blog.isAuthor = !!userBlog
+
+    _blog.isOwner = blog.owner === user.id
+
+    res.json(_blog)
 }
 
 export async function updateBlog(req, res) {
