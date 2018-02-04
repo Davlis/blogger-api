@@ -351,7 +351,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyMjU1Yjk5LTgyMjEtNGQ2MS05NGJlLWZmMDU1MjMzOTM2NyIsImlhdCI6MTUwODY3NjM1Mn0.qrypKjjr5JhtP8X-ZTX05b534SffbZjPtI3GyKaerKs",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjllMDI1MTEwLTc3YzQtNGYwOS1iMjBmLTIyMWViZTNhMDU1YyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc3NTQxNjcsImV4cCI6MTUxNzg0MDU2N30.R0uIr6G8x6OgQD8PvHfluzJdC_RmiUN4yZ24d_fNBTQ",
 								"description": ""
 							},
 							{
@@ -362,7 +362,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"My blog\"\n}"
+							"raw": "{\n\t\"title\": \"My epic journey\",\n\t\"subtitle\": \"Story of my life\",\n\t\"photoUrl\": \"http://res.cloudinary.com/dkbnjb2su/image/upload/v1517754190/rgf31l9zyirkndiwmtce.png\"\n}"
 						},
 						"description": ""
 					},

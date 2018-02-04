@@ -6,12 +6,14 @@ export async function createBlog(req, res) {
     const { Blog, UserBlog } = req.app.get('models')
     const { user } = res.locals
 
-    const input = pick(req.body, 'title')
+    const input = pick(req.body, 'title subtitle photoUrl')
 
     const transaction = await sequelize.transaction()
 
     const blog = await Blog.create({
         title: input.title,
+        subtitle: input.subtitle,
+        photoUrl: input.photoUrl,
         owner: user.id,
     }, { transaction })
 
@@ -82,6 +84,7 @@ export async function deleteBlog(req, res) {
 }
 
 export async function grantAccess(req, res) {
+
     const { UserBlog, Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
@@ -110,6 +113,7 @@ export async function grantAccess(req, res) {
 }
 
 export async function revokeAccess(req, res) {
+
     const { UserBlog, Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
@@ -136,6 +140,7 @@ export async function revokeAccess(req, res) {
 }
 
 export async function addComment(req, res) {
+
     const { BlogComment, Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
@@ -155,6 +160,7 @@ export async function addComment(req, res) {
 }
 
 export async function getComments(req, res) {
+
     const { BlogComment, Blog } = req.app.get('models')
     const { offset = 0, limit = 20 } = req.query
     const { blogId } = req.params
@@ -177,6 +183,7 @@ export async function getComments(req, res) {
 }
 
 export async function removeComment(req, res) {
+
     const { BlogComment, Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params
@@ -196,6 +203,7 @@ export async function removeComment(req, res) {
 }
 
 export async function updateComment(req, res) {
+
     const { BlogComment, Blog } = req.app.get('models')
     const { user } = res.locals
     const { blogId } = req.params

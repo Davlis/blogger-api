@@ -10,6 +10,14 @@ const SCHEMA = {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    subtitle: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    photoUrl: {
+        type: DataTypes.STRING(511),
+        allowNull: true,
+    },
     tags: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
