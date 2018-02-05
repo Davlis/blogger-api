@@ -146,6 +146,7 @@ export async function getComments(req, res) {
             postId: postId,
         },
         include: [{all: true}],
+        order: [['createdAt', 'DESC']],
         limit,
         offset,
     })
