@@ -47,8 +47,9 @@ export async function getPost(req, res) {
 
 export async function updatePost(req, res) {
 
-    const { Post } = req.app.get('models')
+    const { Post, Blog } = req.app.get('models')
     const { postId, blogId } = req.params
+    const { user } = res.locals
     const body = req.body
 
     const blog = await Blog.findById(blogId)
@@ -61,14 +62,14 @@ export async function updatePost(req, res) {
 
     body.tags = normalizeWords(body.tags)
 
-    await post.update(Object.assign({modifierId: user.id}, body)
+    await post.update(Object.assign({modifierId: user.id}, body))
 
     res.json(post)
 }
 
 export async function deletePost(req, res) {
 
-    const { Post } = req.app.get('models')
+    const { Post, Blog } = req.app.get('models')
     const { postId, blogId } = req.params
 
     const blog = await Blog.findById(blogId)

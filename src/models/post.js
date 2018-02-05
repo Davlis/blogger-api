@@ -50,7 +50,7 @@ export const SCHEMA = {
             model: 'users',
             key: 'id',
         },
-    }
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
