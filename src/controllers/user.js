@@ -67,3 +67,15 @@ export async function getUserFiles(req, res) {
     
     res.json(userUploads)    
 }
+
+export async function getUser(req, res) {
+
+    const { userId } = req.params
+    const { User } = req.app.get('models')
+
+    const user = await User.findById(userId)
+    
+    assertOrThrow(user, Error, 'User not found')
+
+    res.json(user)
+}

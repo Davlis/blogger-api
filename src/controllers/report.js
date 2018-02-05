@@ -3,6 +3,7 @@ import { REPORT_TYPES } from '../models/report'
 import { USER_ROLES } from '../models/user'
 
 export async function report(req, res) {
+
     const { Report } = req.app.get('models')
     const { user } = res.locals
 
@@ -25,6 +26,7 @@ export async function report(req, res) {
 }
 
 export async function getReports(req, res) {
+
     const { Report, User, Post, Blog } = req.app.get('models')
     const { user } = res.locals
 
@@ -36,6 +38,7 @@ export async function getReports(req, res) {
 }
 
 export async function deleteReport(req, res) {
+
     const { Report } = req.app.get('models')
     const { user } = res.locals
     const { reportId } = req.params
@@ -51,6 +54,7 @@ export async function deleteReport(req, res) {
 }
 
 export async function getReport(req, res) {
+    
     const { Report, User, Post, Blog } = req.app.get('models')
     const { user } = res.locals
     const { reportId } = req.params
