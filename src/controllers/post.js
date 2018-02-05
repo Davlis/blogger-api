@@ -133,7 +133,7 @@ export async function getPostsFromMyList(req, res) {
 
 export async function getComments(req, res) {
 
-    const { PostComment, Post } = req.app.get('models')
+    const { PostComment, Post, User } = req.app.get('models')
     const { offset = 0, limit = 20 } = req.query
     const { postId } = req.params
 
@@ -145,7 +145,9 @@ export async function getComments(req, res) {
         where: {
             postId: postId,
         },
-        include: [{all: true}],
+        include: [{
+            model: User,
+        }],
         order: [['createdAt', 'DESC']],
         limit,
         offset,

@@ -33,8 +33,8 @@ export default function(sequelize) {
     const PostComment = sequelize.define('post_comment', SCHEMA)
 
     PostComment.associate = function({ User, Post }) {
-        PostComment.belongsTo(User)
-        PostComment.belongsTo(Post)
+        PostComment.belongsTo(User, { foreignKey: 'owner' })
+        PostComment.belongsTo(Post, { foreignKey: 'postId' })
     }
 
     return PostComment
