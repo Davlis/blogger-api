@@ -1,5 +1,6 @@
 import { assertOrThrow, pick } from '../utils'
 import { normalizeWords } from '../lib/tfidf'
+import { USER_ROLES } from '../models/user'
 
 export async function createPost(req, res) {
 
@@ -178,18 +179,23 @@ export async function addComment(req, res) {
 
 export async function removeComment(req, res) {
     
-    const { PostComment, Post } = req.app.get('models')
+    const { PostComment, Post, Blog, UserBlog } = req.app.get('models')
     const { user } = res.locals
-    const { postId } = req.params
+    const { blogId, postId } = req.params
     const { commentId } = req.params
 
-    const post = await Post.findById(postId)
+    const blog = await  Blog.findById(blogId)
+    assertOrThrow(blog, Error, 'Blog not found')
 
+    const post = await Post.findById(postId)
     assertOrThrow(post, Error, 'Post not found')
 
     const postComment = await PostComment.findById(commentId)
-
     assertOrThrow(postComment, Error, 'Post comment not found')
+
+    const isAuthor = await UserBlog.isAuthor(blogId, user.id)
+
+    assertOrThrow(user.role === USER_ROLES.ADMIN || isAuthor, Error, 'Insufficent rights')
 
     await postComment.destroy()
 

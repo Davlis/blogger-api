@@ -27,5 +27,13 @@ export default function(sequelize) {
         UserBlog.belongsTo(Blog)
     }
 
+    UserBlog.isAuthor = async function(blogId, userId) {
+        const userBlog = await UserBlog.find({where: {
+            userId: userId,
+            blogId: blogId,
+        }})
+        return !!userBlog
+    }
+
     return UserBlog
 }
