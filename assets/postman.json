@@ -516,6 +516,56 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/blogs/:blogId/access",
+					"request": {
+						"url": "localhost:3000/blogs/417c983d-0b00-4ed1-a030-1d24486a8caa/access",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmZmQ1YTllLThjMzAtNGNiYS04NjM3LTdiMTA2MTcyNGI3ZSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTgyMTAwMjAsImV4cCI6MTUxODI5NjQyMH0.N6aANqjo9076BTFXS8KaUOyKWdCG9W4k2Q3u6KoDtiI",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"864c2093-4dc3-4d28-881a-94f3968dbc13\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/blogs/:blogId/access",
+					"request": {
+						"url": "localhost:3000/blogs/417c983d-0b00-4ed1-a030-1d24486a8caa/access",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJmZmQ1YTllLThjMzAtNGNiYS04NjM3LTdiMTA2MTcyNGI3ZSIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTgyMTAwMjAsImV4cCI6MTUxODI5NjQyMH0.N6aANqjo9076BTFXS8KaUOyKWdCG9W4k2Q3u6KoDtiI",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"864c2093-4dc3-4d28-881a-94f3968dbc13\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
