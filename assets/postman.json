@@ -1082,6 +1082,23 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "/user/:id/blogs",
+					"request": {
+						"url": "localhost:3000/user/d717fafb-3510-4d3e-9fd0-9deef25355f8/blogs",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwNDQzODksImV4cCI6MTUxNzEzMDc4OX0.ZjHLRsNsXlLRz6I8QETv59nV5RC2tKett_1cF9CjS54",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
