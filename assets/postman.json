@@ -12,7 +12,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "register",
+					"name": "/auth/register",
 					"request": {
 						"url": "localhost:3000/auth/register",
 						"method": "POST",
@@ -32,7 +32,7 @@
 					"response": []
 				},
 				{
-					"name": "login",
+					"name": "/auth/login",
 					"request": {
 						"url": "localhost:3000/auth/login",
 						"method": "POST",
@@ -52,7 +52,7 @@
 					"response": []
 				},
 				{
-					"name": "reset-password",
+					"name": "/auth/reset-password",
 					"request": {
 						"url": "localhost:3000/auth/reset-password",
 						"method": "POST",
@@ -72,7 +72,7 @@
 					"response": []
 				},
 				{
-					"name": "set-password",
+					"name": "/auth/set-password",
 					"request": {
 						"url": "localhost:3000/auth/set-password",
 						"method": "POST",
@@ -92,7 +92,7 @@
 					"response": []
 				},
 				{
-					"name": "refresh-token",
+					"name": "/auth/refresh-token",
 					"request": {
 						"url": "localhost:3000/auth/refresh-token",
 						"method": "POST",
@@ -122,7 +122,7 @@
 					"description": "",
 					"item": [
 						{
-							"name": "localhost:3000/blogs/:blogId/:postId",
+							"name": "/blogs/:blogId/:postId",
 							"request": {
 								"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333/posts/0553960d-6b28-4004-8648-47ddf9dca334",
 								"method": "GET",
@@ -142,7 +142,7 @@
 							"response": []
 						},
 						{
-							"name": "localhost:3000/blogs/:blogId/posts",
+							"name": "/blogs/:blogId/posts",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts",
 								"method": "POST",
@@ -167,7 +167,7 @@
 							"response": []
 						},
 						{
-							"name": "localhost:3000/blogs/:blogId/posts",
+							"name": "/blogs/:blogId/posts",
 							"request": {
 								"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333/posts",
 								"method": "GET",
@@ -187,7 +187,7 @@
 							"response": []
 						},
 						{
-							"name": "localhost:3000/blogs/:blogId/posts/:postId",
+							"name": "/blogs/:blogId/posts/:postId",
 							"request": {
 								"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333/posts/0553960d-6b28-4004-8648-47ddf9dca334",
 								"method": "PUT",
@@ -212,7 +212,7 @@
 							"response": []
 						},
 						{
-							"name": "localhost:3000/blogs/:blogId/posts/:postId",
+							"name": "/blogs/:blogId/posts/:postId",
 							"request": {
 								"url": "localhost:3000/blogs/0553960d-6b28-4004-8648-47ddf9dca333/posts/0553960d-6b28-4004-8648-47ddf9dca334",
 								"method": "DELETE",
@@ -232,7 +232,7 @@
 							"response": []
 						},
 						{
-							"name": "comment",
+							"name": "/blogs/:blogId/posts/:postId/comment",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment",
 								"method": "POST",
@@ -257,7 +257,7 @@
 							"response": []
 						},
 						{
-							"name": "comment",
+							"name": "/blogs/:blogId/posts/:postId/comment/:commentId",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/2fc5e5bd-41c3-45ce-a630-a940293d18eb",
 								"method": "DELETE",
@@ -274,7 +274,7 @@
 							"response": []
 						},
 						{
-							"name": "comment",
+							"name": "/blogs/:blogId/posts/:postId/comment/:commentId",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment/312e941a-4368-4883-a4aa-7b4e7aa29f6b",
 								"method": "PUT",
@@ -299,7 +299,7 @@
 							"response": []
 						},
 						{
-							"name": "comment",
+							"name": "/blogs/:blogId/posts/:postId/comment",
 							"request": {
 								"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/posts/ef2a32d5-f363-4395-8f59-de7705f271cd/comment",
 								"method": "GET",
@@ -319,7 +319,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "localhost:3000/blogs",
+					"name": "/blogs",
 					"request": {
 						"url": "localhost:3000/blogs",
 						"method": "GET",
@@ -344,7 +344,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/blogs",
+					"name": "/blogs",
 					"request": {
 						"url": "localhost:3000/blogs",
 						"method": "POST",
@@ -369,7 +369,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/blogs/:blogId",
+					"name": "/blogs/:blogId",
 					"request": {
 						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "GET",
@@ -389,7 +389,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/blogs/:blogId",
+					"name": "/blogs/:blogId",
 					"request": {
 						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "PUT",
@@ -414,7 +414,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/blogs/:blogId",
+					"name": "/blogs/:blogId",
 					"request": {
 						"url": "localhost:3000/blogs/77f90469-5cb2-419a-88fe-a32abe76d949",
 						"method": "DELETE",
@@ -434,7 +434,7 @@
 					"response": []
 				},
 				{
-					"name": "comment",
+					"name": "/blogs/:blogId/comment/",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/",
 						"method": "POST",
@@ -459,7 +459,7 @@
 					"response": []
 				},
 				{
-					"name": "comment",
+					"name": "/blogs/:blogId/comment/:commentId",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
 						"method": "PUT",
@@ -484,7 +484,7 @@
 					"response": []
 				},
 				{
-					"name": "comment",
+					"name": "/blogs/:blogId/comment/:commentId",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment/1543cb8a-9640-4d64-83f4-64f401fbfa42",
 						"method": "DELETE",
@@ -501,7 +501,7 @@
 					"response": []
 				},
 				{
-					"name": "comment",
+					"name": "blogs/:blogId/comment",
 					"request": {
 						"url": "localhost:3000/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20/comment",
 						"method": "GET",
@@ -524,7 +524,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "localhost:3000/report/3f817fe1-2fe2-4835-a29b-cf89fe3b671d",
+					"name": "/report/:id",
 					"request": {
 						"url": "localhost:3000/report/",
 						"method": "DELETE",
@@ -549,7 +549,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/report",
+					"name": "/report",
 					"request": {
 						"url": "localhost:3000/report",
 						"method": "POST",
@@ -574,7 +574,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/report",
+					"name": "/report",
 					"request": {
 						"url": "localhost:3000/report",
 						"method": "GET",
@@ -599,7 +599,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/report/692d43c8-ccee-4165-a923-b30d5f977bb2",
+					"name": "/report/:id",
 					"request": {
 						"url": "localhost:3000/report/692d43c8-ccee-4165-a923-b30d5f977bb2",
 						"method": "GET",
@@ -622,7 +622,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "localhost:3000/subscription/",
+					"name": "/subscription",
 					"request": {
 						"url": "localhost:3000/subscription/",
 						"method": "GET",
@@ -639,7 +639,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/subscription/",
+					"name": "/subscription",
 					"request": {
 						"url": "localhost:3000/subscription/",
 						"method": "POST",
@@ -664,7 +664,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/subscription/d717fafb-3510-4d3e-9fd0-9deef25355f8",
+					"name": "/subscription/:id",
 					"request": {
 						"url": "localhost:3000/subscription/d717fafb-3510-4d3e-9fd0-9deef25355f8",
 						"method": "DELETE",
@@ -756,7 +756,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/search/posts/tag?query=Animals",
+					"name": "/search/posts/tag?query=word",
 					"request": {
 						"url": {
 							"raw": "localhost:3000/search/posts/tag?query=Animals",
@@ -793,7 +793,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/search/blogs/tag?query=Animals",
+					"name": "/search/blogs/tag?query=word",
 					"request": {
 						"url": {
 							"raw": "localhost:3000/search/blogs/tag?query=Animals",
@@ -836,7 +836,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "localhost:3000/admin/users",
+					"name": "/admin/users",
 					"request": {
 						"url": "localhost:3000/admin/users",
 						"method": "GET",
@@ -853,7 +853,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/admin/users/block/74282cb9-ed8f-491c-87a8-583eab2134af",
+					"name": "/admin/users/block/:id",
 					"request": {
 						"url": "localhost:3000/admin/users/block/74282cb9-ed8f-491c-87a8-583eab2134af",
 						"method": "POST",
@@ -870,7 +870,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/admin/users/unblock/74282cb9-ed8f-491c-87a8-583eab2134af",
+					"name": "/admin/users/unblock/:id",
 					"request": {
 						"url": "localhost:3000/admin/users/unblock/74282cb9-ed8f-491c-87a8-583eab2134af",
 						"method": "POST",
@@ -887,7 +887,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/admin/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+					"name": "/admin/blogs/:id",
 					"request": {
 						"url": "localhost:3000/admin/blogs/b3bb2d5f-e129-4677-b79c-f14955d96d20",
 						"method": "DELETE",
@@ -904,7 +904,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/admin/posts/b3bb2d5f-e129-4677-b79c-f14955d96d20",
+					"name": "/admin/posts/:id",
 					"request": {
 						"url": "localhost:3000/admin/posts/b3bb2d5f-e129-4677-b79c-f14955d96d20",
 						"method": "DELETE",
@@ -921,7 +921,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/admin/blogs",
+					"name": "/admin/blogs",
 					"request": {
 						"url": "localhost:3000/admin/blogs",
 						"method": "GET",
@@ -944,7 +944,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "localhost:3000/user/photo",
+					"name": "/user/photo",
 					"request": {
 						"url": "localhost:3000/user/photo",
 						"method": "PUT",
@@ -971,7 +971,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/user/upload",
+					"name": "/user/upload",
 					"request": {
 						"url": "localhost:3000/user/upload",
 						"method": "PUT",
@@ -998,7 +998,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/user/upload",
+					"name": "/user/upload",
 					"request": {
 						"url": "localhost:3000/user/upload",
 						"method": "GET",
@@ -1025,7 +1025,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/user",
+					"name": "/user",
 					"request": {
 						"url": "localhost:3000/user",
 						"method": "PUT",
@@ -1050,7 +1050,7 @@
 					"response": []
 				},
 				{
-					"name": "localhost:3000/user",
+					"name": "/user",
 					"request": {
 						"url": "localhost:3000/user",
 						"method": "DELETE",
@@ -1058,6 +1058,23 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRlNjk3MTE3LTExM2YtNDcyYy1iZWQ2LWQyYTNlODAyNjEyNiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTc2ODU2NzYsImV4cCI6MTUxNzc3MjA3Nn0.PwvxBk5irUdBV_jRksM70VhNuD-3bZMy2ZAXJt4-J7s",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/user/:id",
+					"request": {
+						"url": "localhost:3000/user/d717fafb-3510-4d3e-9fd0-9deef25355f8",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNjUxNWY0LTRiYjYtNGM3Ni1iOGMzLWZhOTA0NGQ4MTg5MyIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTcwNDQzODksImV4cCI6MTUxNzEzMDc4OX0.ZjHLRsNsXlLRz6I8QETv59nV5RC2tKett_1cF9CjS54",
 								"description": ""
 							}
 						],
@@ -1073,7 +1090,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "localhost:3000/support",
+					"name": "/support",
 					"request": {
 						"url": "localhost:3000/support",
 						"method": "POST",
