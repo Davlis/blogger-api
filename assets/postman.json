@@ -721,7 +721,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "search",
+					"name": "/search",
 					"request": {
 						"url": {
 							"raw": "localhost:3000/search?query=my first world",
@@ -805,6 +805,42 @@
 								"search",
 								"blogs",
 								"tag"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Animals",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NGRhNGMzLTIyOWUtNDQzZS1iOGI0LTEzNmI1ZTIwZDRjZiIsInR5cGUiOiJhY2Nlc3MtdG9rZW4iLCJpYXQiOjE1MTY5OTIyOTAsImV4cCI6MTUxNzA3ODY5MH0.etd6vb0_SkpFKZ2AMWd5Bxle8cSjOqG_ZsjZgsAjIHY",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/search/blogs?query=word",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/search/blogs?query=Animals",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"blogs"
 							],
 							"query": [
 								{
