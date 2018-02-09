@@ -120,7 +120,7 @@ export async function searchPostsByTags(req, res) {
     res.json(posts)
 }
 
-export async function searchUserBlogs(req, res) {
+export async function searchBlogs(req, res) {
 
     const sequelize = req.app.get('sequelize')
     const { Blog } = req.app.get('models')
