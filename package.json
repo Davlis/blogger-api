@@ -1,7 +1,7 @@
 {
   "name": "blogspot",
   "version": "0.0.1",
-  "description": "Create your own blog using blogspot.",
+  "description": "Create your own blog using blogger.",
   "main": "server.js",
   "scripts": {
     "test": "npm run test",
@@ -17,18 +17,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Davlis/blogspot-api.git"
+    "url": "git+https://github.com/Davlis/blogger-api.git"
   },
   "keywords": [
     "blogspot",
-    "blog"
+    "blog",
+    "blogger"
   ],
   "author": "Dawid Liszka",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Davlis/blogspot-api/issues"
+    "url": "https://github.com/Davlis/blogger-api/issues"
   },
-  "homepage": "https://github.com/Davlis/blogspot-api#readme",
+  "homepage": "https://github.com/Davlis/blogger-api#readme",
   "babel": {
     "plugins": [
       "transform-es2015-modules-commonjs"
