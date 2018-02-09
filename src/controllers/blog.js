@@ -48,13 +48,17 @@ export async function getBlog(req, res) {
     const { user } = res.locals
     const { blogId } = req.params
 
-    const blog = await Blog.findById(blogId)
+    const blog = await Blog.findById(blogId, {
+        include: [{all: true}]
+    })
 
     assertOrThrow(blog, Error, 'Blog not found')
 
-    const userBlog = await UserBlog.find({where: {
-        userId: user.id,
-    }})
+    const userBlog = await UserBlog.find({
+        where: {
+            userId: user.id,
+        },
+    })
 
     const _blog = blog.toJSON()
 

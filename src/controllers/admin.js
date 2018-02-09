@@ -1,6 +1,7 @@
 import { assertOrThrow, pick } from '../utils'
 
 export async function blockUser(req, res) {
+
     const { User } = req.app.get('models')
     const { userId } = req.params
 
@@ -15,6 +16,7 @@ export async function blockUser(req, res) {
 }
 
 export async function unblockUser(req, res) {
+    
     const { User } = req.app.get('models')
     const { userId } = req.params
 

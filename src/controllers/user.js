@@ -6,7 +6,7 @@ export async function updateUser(req, res) {
     const config = res.app.get('config')
     const { User } = req.app.get('models')
     let { user } = res.locals
-    const { email, password, lastName, firstName } = req.body
+    const { email, password, lastName, firstName, bio } = req.body
 
     const passhash = User.hashPassword(password, config.salt)
 
@@ -16,6 +16,7 @@ export async function updateUser(req, res) {
         lastName,
         firstName,
         passhash,
+        bio,
         role: USER_ROLES.CUSTOMER,
     })
 
@@ -74,8 +75,27 @@ export async function getUser(req, res) {
     const { User } = req.app.get('models')
 
     const user = await User.findById(userId)
-    
+
     assertOrThrow(user, Error, 'User not found')
 
     res.json(user)
+}
+
+export async function getUserBlogs(req, res) {
+
+    const { userId } = req.params
+    const { User, UserBlog } = req.app.get('models')
+
+    const user = await User.findById(userId)
+
+    assertOrThrow(user, Error, 'User not found')
+
+    const blogs = await UserBlog.findAll({
+        where: {
+            userId
+        },
+        include: [{all: true}],
+    })
+
+    res.json(blogs)
 }

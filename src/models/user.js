@@ -64,6 +64,10 @@ const SCHEMA = {
         allowNull: false,
         defaultValue: USER_STATUS.ACTIVE,
     },
+    bio: {
+        type: DataTypes.STRING(511),
+        allowNull: true,
+    },
     photoUrl: {
         type: DataTypes.STRING(511),
         allowNull: true,
