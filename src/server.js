@@ -13,7 +13,7 @@ process.on('unhandledRejection', console.error)
 const config = generateConfig()
 const { sequelize, models } = initSequelize(config)
 
-mailer.setApiKey(config.mailer.SENDGRID_API_KEY);
+mailer.setApiKey(config.mailer.SENDGRID_API_KEY)
 
 cloudinary.config({ 
     cloud_name: config.cloud.name,
