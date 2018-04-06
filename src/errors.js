@@ -6,6 +6,14 @@ export class badRequest extends Error {
     }
 }
 
+export class unauthorized extends Error {
+    constructor(message) {
+        super();
+        this.status = 401;
+        this.message = message;
+    }
+}
+
 export class notFound extends Error {
     constructor(message) {
         super();
