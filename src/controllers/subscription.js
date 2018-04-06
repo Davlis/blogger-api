@@ -1,4 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
+import { NotFound } from '../errors';
 
 export async function subscribe(req, res) {
     const { Subscription, Blog } = req.app.get('models')
@@ -8,7 +9,7 @@ export async function subscribe(req, res) {
 
     const blog = await Blog.findById(input.blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const subscription = await Subscription.create({
         userId: user.id,
@@ -37,7 +38,7 @@ export async function deleteSubscription(req, res) {
 
     const subscription = await Subscription.findById(subscriptionId)
 
-    assertOrThrow(subscription, Error, 'Subscription not found')
+    assertOrThrow(subscription, NotFound, 'Subscription not found')
 
     await subscription.destroy()
 
