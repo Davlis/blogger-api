@@ -1,4 +1,4 @@
-export class badRequest extends Error {
+export class BadRequest extends Error {
     constructor(message) {
         super();
         this.status = 400;
@@ -6,7 +6,7 @@ export class badRequest extends Error {
     }
 }
 
-export class unauthorized extends Error {
+export class Unauthorized extends Error {
     constructor(message) {
         super();
         this.status = 401;
@@ -14,7 +14,7 @@ export class unauthorized extends Error {
     }
 }
 
-export class forbidden extends Error {
+export class Forbidden extends Error {
     constructor(message) {
         super();
         this.status = 403;
@@ -22,7 +22,7 @@ export class forbidden extends Error {
     }
 }
 
-export class notFound extends Error {
+export class NotFound extends Error {
     constructor(message) {
         super();
         this.status = 404;
@@ -30,7 +30,7 @@ export class notFound extends Error {
     }
 }
 
-export class notImplemented extends Error {
+export class NotImplemented extends Error {
     constructor(message) {
         super();
         this.status = 501;
