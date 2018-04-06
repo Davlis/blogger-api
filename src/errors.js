@@ -29,3 +29,11 @@ export class notFound extends Error {
         this.message = message
     }
 }
+
+export class notImplemented extends Error {
+    constructor(message) {
+        super();
+        this.status = 501;
+        this.message = message
+    }   
+}
