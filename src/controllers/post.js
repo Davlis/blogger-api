@@ -1,6 +1,7 @@
 import { assertOrThrow, pick } from '../utils'
 import { normalizeWords } from '../lib/tfidf'
 import { USER_ROLES } from '../models/user'
+import { NotFound, Forbidden } from '../errors';
 
 export async function createPost(req, res) {
 
@@ -10,10 +11,10 @@ export async function createPost(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     // TODO(dliszka): Add roles to user-blog. (owner of blog, shared)
-    // assertOrThrow(blog.userId === user.id, Error, 'Forbidden')
+    // assertOrThrow(blog.userId === user.id, Forbidden, 'Forbidden')
 
     const input = pick(req.body, 'title content photoUrl publishDate tags')
 
@@ -37,11 +38,11 @@ export async function getPost(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     res.json(post)
 }
@@ -55,11 +56,11 @@ export async function updatePost(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     body.tags = normalizeWords(body.tags)
 
@@ -75,11 +76,11 @@ export async function deletePost(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     await post.destroy()
 
@@ -93,7 +94,7 @@ export async function getBlogPosts(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const posts = await Post.findAll({
         where: {
@@ -140,7 +141,7 @@ export async function getComments(req, res) {
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     const postComments = await PostComment.findAndCountAll({
         where: {
@@ -166,7 +167,7 @@ export async function addComment(req, res) {
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     const postComment = await PostComment.create({
         content: body.content,
@@ -185,17 +186,17 @@ export async function removeComment(req, res) {
     const { commentId } = req.params
 
     const blog = await  Blog.findById(blogId)
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const post = await Post.findById(postId)
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     const postComment = await PostComment.findById(commentId)
-    assertOrThrow(postComment, Error, 'Post comment not found')
+    assertOrThrow(postComment, NotFound, 'Post comment not found')
 
     const isAuthor = await UserBlog.isAuthor(blogId, user.id)
 
-    assertOrThrow(user.role === USER_ROLES.ADMIN || isAuthor, Error, 'Insufficent rights')
+    assertOrThrow(user.role === USER_ROLES.ADMIN || isAuthor, Forbidden, 'Insufficent rights')
 
     await postComment.destroy()
 
@@ -212,11 +213,11 @@ export async function updateComment(req, res) {
 
     const post = await Post.findById(postId)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, NotFound, 'Post not found')
 
     let postComment = await PostComment.findById(commentId)
 
-    assertOrThrow(postComment, Error, 'Post comment not found')
+    assertOrThrow(postComment, NotFound, 'Post comment not found')
 
     postComment = await postComment.update({
         content: body.content,

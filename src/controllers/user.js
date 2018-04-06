@@ -1,5 +1,6 @@
 import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES } from '../models/user'
+import { NotFound } from '../errors';
 
 export async function updateUser(req, res) {
 
@@ -76,7 +77,7 @@ export async function getUser(req, res) {
 
     const user = await User.findById(userId)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, NotFound, 'User not found')
 
     res.json(user)
 }
@@ -88,7 +89,7 @@ export async function getUserBlogs(req, res) {
 
     const user = await User.findById(userId)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, NotFound, 'User not found')
 
     const blogs = await UserBlog.findAll({
         where: {

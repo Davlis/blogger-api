@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES, USER_STATUS } from '../models/user'
+import { NotFound, Forbidden, BadRequest } from '../errors';
 
 export async function login(req, res) {
 
@@ -10,13 +11,13 @@ export async function login(req, res) {
 
     const user = await User.findByEmail(email)
     
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, NotFound, 'User not found')
 
-    assertOrThrow(user.status !== USER_STATUS.BLOCKED, Error, 'User is blocked')
+    assertOrThrow(user.status !== USER_STATUS.BLOCKED, Forbidden, 'User is blocked')
 
     assertOrThrow(
         user.getDataValue('passhash') === User.hashPassword(password, config.salt),
-        Error,
+        BadRequest,
         'Invalid password')
 
     const token = user.issueAuthToken(config.salt, config.auth)
@@ -56,7 +57,7 @@ export async function resetPassword(req, res) {
 
     const user = await User.findByEmail(input.email)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, NotFound, 'User not found')
 
     const response = await user.sendResetPasswordEmail(mailer, config)
     
@@ -72,19 +73,19 @@ export async function setPassword(req, res) {
     try {
         payload = jwt.verify(body.token, salt)
     } catch (err) {
-        throw new Error('Invalid token')
+        throw new BadRequest('Invalid token')
     }
 
     assertOrThrow(
         payload.type === User.TOKEN_TYPES.ACCESS_TOKEN ||
         payload.type === User.TOKEN_TYPES.RESET_PASSWORD,
-        Error,
+        BadRequest,
         'Invalid token type'
     )
 
     const user = await User.findById(payload.id)
 
-    assertOrThrow(user, Error, 'Cant find a user with that token')
+    assertOrThrow(user, NotFound, 'Cant find a user with that token')
 
     user.setPassword(body.password, salt)
     await user.save()
@@ -110,7 +111,7 @@ export async function refreshToken(req, res) {
 
     let user = await User.findById(payload.id)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, NotFound, 'User not found')
 
     res.json(user.issueAuthToken(salt, authConfig))
 }
