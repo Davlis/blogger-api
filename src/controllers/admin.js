@@ -1,4 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
+import { notFound } from '../errors';
 
 export async function blockUser(req, res) {
 
@@ -7,7 +8,7 @@ export async function blockUser(req, res) {
 
     const user = await User.findById(userId)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, notFound, 'User not found')
 
     user.status = User.USER_STATUS.BLOCKED
     await user.save()
@@ -22,7 +23,7 @@ export async function unblockUser(req, res) {
 
     const user = await User.findById(userId)
 
-    assertOrThrow(user, Error, 'User not found')
+    assertOrThrow(user, notFound, 'User not found')
 
     user.status = User.USER_STATUS.ACTIVE
     await user.save()
@@ -64,7 +65,7 @@ export async function deleteBlog(req, res) {
 
     const blog = await Blog.findById(id)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, notFound, 'Blog not found')
 
     await blog.destroy()
 
@@ -77,7 +78,7 @@ export async function deletePost(req, res) {
 
     const post = await Post.findById(id)
 
-    assertOrThrow(post, Error, 'Post not found')
+    assertOrThrow(post, notFound, 'Post not found')
 
     await post.destroy()
 
