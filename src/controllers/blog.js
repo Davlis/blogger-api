@@ -1,5 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
-import { NotFound } from '../errors';
+import { NotFound } from '../errors'
 
 export async function createBlog(req, res) {
 
@@ -30,7 +30,7 @@ export async function createBlog(req, res) {
 
 export async function getUserBlogs(req, res) {
     
-    const { UserBlog, Blog } = req.app.get('models')
+    const { UserBlog } = req.app.get('models')
     const { user } = res.locals
 
     const blogs = await UserBlog.findAll({
@@ -73,7 +73,6 @@ export async function getBlog(req, res) {
 export async function updateBlog(req, res) {
 
     const { Blog } = req.app.get('models')
-    const { user } = res.locals
     const { blogId } = req.params
     const input = pick(req.body, 'title subtitle photoUrl')
 
@@ -89,9 +88,7 @@ export async function updateBlog(req, res) {
 export async function deleteBlog(req, res) {
 
     const { Blog } = req.app.get('models')
-    const { user } = res.locals
     const { blogId } = req.params
-    const input = pick(req.body, 'title')
 
     const blog = await Blog.findById(blogId)
 
@@ -183,7 +180,6 @@ export async function getComments(req, res) {
     const { BlogComment, Blog } = req.app.get('models')
     const { offset = 0, limit = 20 } = req.query
     const { blogId } = req.params
-    const body = req.body
 
     const blog = await Blog.findById(blogId)
 
@@ -204,7 +200,6 @@ export async function getComments(req, res) {
 export async function removeComment(req, res) {
 
     const { BlogComment, Blog } = req.app.get('models')
-    const { user } = res.locals
     const { blogId } = req.params
     const { commentId } = req.params
 
