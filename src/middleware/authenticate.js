@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { assertOrThrow } from '../utils'
-import { BadRequest, NotFound, Unauthorized } from '../errors';
+import { BadRequest, NotFound, Unauthorized } from '../errors'
 
 export default function authenticate(req, res, next) {
 

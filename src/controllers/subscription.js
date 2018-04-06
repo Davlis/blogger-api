@@ -1,5 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
-import { NotFound } from '../errors';
+import { NotFound } from '../errors'
 
 export async function subscribe(req, res) {
     const { Subscription, Blog } = req.app.get('models')
@@ -48,7 +48,7 @@ export async function deleteSubscription(req, res) {
 export async function getPostsFromMyList(req, res) {
 
     const sequelize = req.app.get('sequelize')
-    const Op = sequelize.Op;
+    const Op = sequelize.Op
     const { Subscription, Post } = req.app.get('models')
     const { offset = 0, limit = 20  } = req.params
     const { user } = res.locals

@@ -1,5 +1,4 @@
 import Sequelize from 'sequelize'
-import generateConfig from './config'
 import defineUser from './models/user'
 import defineBlog from './models/blog'
 import definePost from './models/post'
