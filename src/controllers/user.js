@@ -1,6 +1,6 @@
-import { assertOrThrow } from '../utils'
+import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES } from '../models/user'
-import { NotFound } from '../errors'
+import { NotFound } from '../errors';
 
 export async function updateUser(req, res) {
 
@@ -35,6 +35,7 @@ export async function addUserPhoto(req, res) {
 
 export async function deleteUser(req, res) {
 
+    const { User } = req.app.get('models')
     const { user } = res.locals
 
     await user.destroy()

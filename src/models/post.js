@@ -12,7 +12,7 @@ export const SCHEMA = {
     },
     content: {
         type: DataTypes.JSON,
-        defaultValue: '',
+        defaultValue: "",
     },
     photoUrl: {
         type: DataTypes.STRING(511),

@@ -1,7 +1,7 @@
 import { assertOrThrow, pick } from '../utils'
 import { normalizeWords } from '../lib/tfidf'
 import { USER_ROLES } from '../models/user'
-import { NotFound, Forbidden } from '../errors'
+import { NotFound, Forbidden } from '../errors';
 
 export async function createPost(req, res) {
 
