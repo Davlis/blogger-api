@@ -185,7 +185,7 @@ export async function removeComment(req, res) {
     const { blogId, postId } = req.params
     const { commentId } = req.params
 
-    const blog = await  Blog.findById(blogId)
+    const blog = await Blog.findById(blogId)
     assertOrThrow(blog, NotFound, 'Blog not found')
 
     const post = await Post.findById(postId)
@@ -222,7 +222,7 @@ export async function updateComment(req, res) {
     postComment = await postComment.update({
         content: body.content,
         postId,
-        owner: user.id,        
+        owner: user.id,
     })
 
     res.json(postComment)

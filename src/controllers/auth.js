@@ -22,7 +22,7 @@ export async function login(req, res) {
 
     const token = user.issueAuthToken(config.salt, config.auth)
 
-    res.json({ user, token })       
+    res.json({ user, token })
 }
 
 export async function register(req, res) {

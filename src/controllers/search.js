@@ -72,7 +72,7 @@ export async function search(req, res) {
 
     _sortable.sort(function(a, b) {
         return b[1]-a[1]
-    });
+    })
 
     const sortable = []
     for (let i = 0; i < _sortable.length; ++i) {
@@ -150,5 +150,5 @@ export async function searchBlogs(req, res) {
         offset,
     })
 
-    res.json(blogs)    
+    res.json(blogs)
 }

@@ -67,7 +67,7 @@ export async function getUserFiles(req, res) {
         }
     })
     
-    res.json(userUploads)    
+    res.json(userUploads)
 }
 
 export async function getUser(req, res) {

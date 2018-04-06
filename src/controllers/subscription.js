@@ -50,7 +50,7 @@ export async function getPostsFromMyList(req, res) {
     const sequelize = req.app.get('sequelize')
     const Op = sequelize.Op;
     const { Subscription, Post } = req.app.get('models')
-    const { offset = 0, limit = 20  } = req.params
+    const { offset = 0, limit = 20 } = req.params
     const { user } = res.locals
 
     const subscriptions = await Subscription.findAll({
@@ -77,7 +77,7 @@ export async function getPostsFromMyList(req, res) {
 
 export async function getMyBlogList(req, res) {
     const { User, Blog, Subscription } = req.app.get('models')
-    const { offset = 0, limit = 20  } = req.params
+    const { offset = 0, limit = 20 } = req.params
 
     const { user } = res.locals
 
