@@ -1,10 +1,9 @@
-import { assertOrThrow } from '../utils'
 import { getTf, getIdf, getWords, normalizeWords } from '../lib/tfidf'
 
 export async function search(req, res) {
 
     const { Blog, Post } = req.app.get('models')
-    const { query, limit = 20, offset = 0 } = req.query
+    const { query } = req.query
 
     const queryWords = normalizeWords(getWords(query))
 
@@ -137,13 +136,14 @@ export async function searchBlogs(req, res) {
             [Op.or]: [{
                 tags: {
                     $contains: queryWords
-                }},
-                {   
-                    title: {[Op.iRegexp]: regexp}
-                },
-                {   
-                    subtitle: {[Op.iRegexp]: regexp}
-                },
+                }
+            },
+            {
+                title: {[Op.iRegexp]: regexp}
+            },
+            {
+                subtitle: {[Op.iRegexp]: regexp}
+            },
             ]
         },
         limit,
