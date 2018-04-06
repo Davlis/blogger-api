@@ -6,7 +6,7 @@ export default function defineUploadMiddleware(req, res, next) {
 
     async function wrap() {
         const cloudinary = req.app.get('cloudinary')
-        const form = new multiparty.Form()
+        const form = new multiparty.Form();
 
         let filePath
 

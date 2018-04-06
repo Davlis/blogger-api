@@ -1,7 +1,7 @@
 import { assertOrThrow, pick } from '../utils'
 import { REPORT_TYPES } from '../models/report'
 import { USER_ROLES } from '../models/user'
-import { BadRequest, Forbidden, NotFound } from '../errors'
+import { BadRequest, Forbidden, NotFound } from '../errors';
 
 export async function report(req, res) {
 
@@ -28,7 +28,7 @@ export async function report(req, res) {
 
 export async function getReports(req, res) {
 
-    const { Report } = req.app.get('models')
+    const { Report, User, Post, Blog } = req.app.get('models')
     const { user } = res.locals
 
     assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
@@ -56,7 +56,7 @@ export async function deleteReport(req, res) {
 
 export async function getReport(req, res) {
     
-    const { Report } = req.app.get('models')
+    const { Report, User, Post, Blog } = req.app.get('models')
     const { user } = res.locals
     const { reportId } = req.params
 

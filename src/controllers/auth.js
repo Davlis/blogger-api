@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { assertOrThrow, pick } from '../utils'
 import { USER_ROLES, USER_STATUS } from '../models/user'
-import { NotFound, Forbidden, BadRequest } from '../errors'
+import { NotFound, Forbidden, BadRequest } from '../errors';
 
 export async function login(req, res) {
 
@@ -99,6 +99,8 @@ export async function refreshToken(req, res) {
 
     const { User } = req.app.get('models')
     const { refreshToken } = req.body
+
+    console.log(refreshToken)
 
     let payload
     try {

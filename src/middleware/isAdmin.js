@@ -1,5 +1,5 @@
 import { assertOrThrow } from '../utils'
-import { Unauthorized } from '../errors'
+import { Unauthorized } from '../errors';
 
 export default function isAdmin(req, res, next) {
 

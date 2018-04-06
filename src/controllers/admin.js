@@ -1,5 +1,5 @@
-import { assertOrThrow } from '../utils'
-import { NotFound } from '../errors'
+import { assertOrThrow, pick } from '../utils'
+import { NotFound } from '../errors';
 
 export async function blockUser(req, res) {
 

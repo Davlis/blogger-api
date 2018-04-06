@@ -25,7 +25,7 @@ const SCHEMA = {
     content: {
         type: DataTypes.JSON,
         allowNull: false,
-        defaultValue: '',
+        defaultValue: "",
     },
 }
 
