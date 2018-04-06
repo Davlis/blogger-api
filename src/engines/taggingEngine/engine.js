@@ -47,6 +47,6 @@ async function start(sequelize, models) {
 }
 
 function startInterval(seconds, callback) {
-    callback();
-    return setInterval(callback, seconds*1000);
+    callback()
+    return setInterval(callback, seconds*1000)
 }
