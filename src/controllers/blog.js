@@ -1,4 +1,5 @@
 import { assertOrThrow, pick } from '../utils'
+import { NotFound } from '../errors';
 
 export async function createBlog(req, res) {
 
@@ -52,7 +53,7 @@ export async function getBlog(req, res) {
         include: [{all: true}]
     })
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const userBlog = await UserBlog.find({
         where: {
@@ -78,7 +79,7 @@ export async function updateBlog(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     await blog.update(input)
 
@@ -94,7 +95,7 @@ export async function deleteBlog(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     await blog.destroy()
 
@@ -120,7 +121,7 @@ export async function grantAccess(req, res) {
         }]
     })
 
-    assertOrThrow(userBlog, Error, 'Blog not found')
+    assertOrThrow(userBlog, NotFound, 'Blog not found')
 
     await UserBlog.create({
         blogId,
@@ -150,7 +151,7 @@ export async function revokeAccess(req, res) {
         }]
     })
 
-    assertOrThrow(userBlog, Error, 'UserBlog not found')
+    assertOrThrow(userBlog, NotFound, 'UserBlog not found')
 
     await userBlog.destroy()
 
@@ -166,7 +167,7 @@ export async function addComment(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const blogComment = await BlogComment.create({
         content: body.content,
@@ -186,7 +187,7 @@ export async function getComments(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const blogComments = await BlogComment.findAndCountAll({
         where: {
@@ -209,11 +210,11 @@ export async function removeComment(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     const blogComment = await BlogComment.findById(commentId)
 
-    assertOrThrow(blogComment, Error, 'Blog comment not found')
+    assertOrThrow(blogComment, NotFound, 'Blog comment not found')
 
     await blogComment.destroy()
 
@@ -230,11 +231,11 @@ export async function updateComment(req, res) {
 
     const blog = await Blog.findById(blogId)
 
-    assertOrThrow(blog, Error, 'Blog not found')
+    assertOrThrow(blog, NotFound, 'Blog not found')
 
     let blogComment = await BlogComment.findById(commentId)
 
-    assertOrThrow(blogComment, Error, 'Blog comment not found')
+    assertOrThrow(blogComment, NotFound, 'Blog comment not found')
 
     blogComment = await blogComment.update({
         content: body.content,
