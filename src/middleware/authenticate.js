@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { assertOrThrow } from '../utils'
+import { BadRequest, NotFound, Unauthorized } from '../errors';
 
 export default function authenticate(req, res, next) {
 
@@ -12,24 +13,24 @@ export default function authenticate(req, res, next) {
 
         let user
 
-        assertOrThrow(authorization, Error, 'Authorization header is missing')
+        assertOrThrow(authorization, BadRequest, 'Authorization header is missing')
 
         if (authorization.includes('Bearer ')) {
             const token = authorization.replace('Bearer ', '')
             try {
                 let payload = jwt.verify(token, config.salt)
                 user = await User.findById(payload.id)
-            } catch(err) {
-                throw new Error('Invalid Bearer Token')
+            } catch (err) {
+                throw new Unauthorized('Invalid Bearer Token')
             }
         } else if (authorization.includes('User ')) {
             const email = authorization.replace('User ', '')
             user = await User.findByEmail(email)
         } else {
-            throw new Error('Invalid format of Authorization header')
+            throw new BadRequest('Invalid format of Authorization header')
         }
 
-        assertOrThrow(user, Error, 'User not found')
+        assertOrThrow(user, NotFound, 'User not found')
 
         res.locals.user = user
         next()

@@ -1,4 +1,5 @@
 import { assertOrThrow } from '../utils'
+import { Unauthorized } from '../errors';
 
 export default function isAdmin(req, res, next) {
 
@@ -8,7 +9,7 @@ export default function isAdmin(req, res, next) {
         const { User } = req.app.get('models')
         const { user } = res.locals
 
-        assertOrThrow(user.role === User.USER_ROLES.ADMIN, Error, 'Insufficient rights')
+        assertOrThrow(user.role === User.USER_ROLES.ADMIN, Unauthorized, 'Insufficient rights')
 
         next()
     }
