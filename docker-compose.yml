@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10.5
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234567890
+      - POSTGRES_DB=blogspot
+    ports:
+      - '25432:5432'
+    volumes:
+      - data-volume:/data/db
+  backend:
+    build: .
+    ports:
+      - 4000:4000
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env.docker
+volumes:
+  data-volume:
+networks:
+  blogger_default:
+    external: true
