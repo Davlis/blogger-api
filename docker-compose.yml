@@ -20,6 +20,9 @@ services:
       - postgres
     env_file:
       - .env.docker
+    networks:
+      - blogger_default
+      - default
 volumes:
   data-volume:
 networks:
