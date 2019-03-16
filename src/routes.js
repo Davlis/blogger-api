@@ -16,15 +16,15 @@ import supportRoutes from './routes/support'
 
 const router = Router()
 
-router.use('/auth', authRoutes)
-router.use('/home', Authenticate, homeRoutes)
-router.use('/user', Authenticate, userRoutes)
-router.use('/blogs', Authenticate, blogRoutes)
-router.use('/blogs/:blogId/posts', Authenticate, postRoutes)
-router.use('/report', Authenticate, reportRoutes)
-router.use('/subscription', Authenticate, subscriptionRoutes)
-router.use('/search', Authenticate, searchRoutes)
-router.use('/admin', Authenticate, isAdmin, adminRoutes)
-router.use('/support', Authenticate, supportRoutes)
+router.use('/api/auth', authRoutes)
+router.use('/api/home', Authenticate, homeRoutes)
+router.use('/api/user', Authenticate, userRoutes)
+router.use('/api/blogs', Authenticate, blogRoutes)
+router.use('/api/blogs/:blogId/posts', Authenticate, postRoutes)
+router.use('/api/report', Authenticate, reportRoutes)
+router.use('/api/subscription', Authenticate, subscriptionRoutes)
+router.use('/api/search', Authenticate, searchRoutes)
+router.use('/api/admin', Authenticate, isAdmin, adminRoutes)
+router.use('/api/support', Authenticate, supportRoutes)
 
 export default router
