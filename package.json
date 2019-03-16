@@ -55,7 +55,8 @@
     "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "pug": "^2.0.0-rc.4",
-    "sequelize": "^4.13.15"
+    "sequelize": "^4.13.15",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

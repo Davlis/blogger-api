@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import mailer from '@sendgrid/mail'
 import cloudinary from 'cloudinary'
+import logger from './logger'
 import router from './routes'
 import generateConfig from './config'
 import initSequelize from './database'
@@ -21,7 +22,7 @@ cloudinary.config({
   api_secret: config.cloud.apiSecret
 })
 
-const depedencies = { sequelize, models, mailer, cloudinary }
+const depedencies = { logger, sequelize, models, mailer, cloudinary }
 
 const app = initApp(config, depedencies)
 
@@ -33,6 +34,7 @@ export default function initApp(config, depedencies) {
   const app = express()
 
   app.set('config', config)
+  app.set('logger', depedencies.logger)
   app.set('models', depedencies.models)
   app.set('sequelize', depedencies.sequelize)
   app.set('mailer', depedencies.mailer)
@@ -53,14 +55,18 @@ export default function initApp(config, depedencies) {
 
   app.use(router)
 
-  app.use((err, req, res) => {
-    res.status(err.status || 500).json({
-      statusCode: err.status || 500,
-      error: err.name,
-      message: err.message
+  app.use((error, req, res) => {
+    logger.error(`server: error occured ${error}`)
+
+    res.status(error.status || 500).json({
+      statusCode: error.status || 500,
+      error: error.name,
+      message: error.message
     })
   })
   app.use((req, res) => {
+    logger.error(`server: error occured: ${req.url} not found`)
+
     res.status(404).json({
       statusCode: 404,
       error: 'Not Found',
