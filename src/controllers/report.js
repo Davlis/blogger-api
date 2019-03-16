@@ -4,69 +4,66 @@ import { USER_ROLES } from '../models/user'
 import { BadRequest, Forbidden, NotFound } from '../errors'
 
 export async function report(req, res) {
+  const { Report } = req.app.get('models')
+  const { user } = res.locals
 
-    const { Report } = req.app.get('models')
-    const { user } = res.locals
+  const input = pick(req.body, 'type body id')
 
-    const input = pick(req.body, 'type body id')
+  const report = {
+    accuser: user.id,
+    body: input.body
+  }
 
-    const report = {
-        accuser: user.id,
-        body: input.body,
-    }
+  assertOrThrow(input.type, BadRequest, 'Report type is required')
 
-    assertOrThrow(input.type, BadRequest, 'Report type is required')
+  assertOrThrow(Object.values(REPORT_TYPES).includes(input.type), BadRequest, 'Invalid value for report type')
 
-    assertOrThrow(Object.values(REPORT_TYPES).includes(input.type), BadRequest, 'Invalid value for report type')
+  report.type = input.type
+  report[input.type + 'Id'] = input.id
 
-    report.type = input.type
-    report[input.type + 'Id'] = input.id
-
-    await Report.create(report)
-    res.json(report)
+  await Report.create(report)
+  res.json(report)
 }
 
 export async function getReports(req, res) {
+  const { Report } = req.app.get('models')
+  const { user } = res.locals
 
-    const { Report } = req.app.get('models')
-    const { user } = res.locals
+  assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
 
-    assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
+  const reports = await Report.findAll({ include: [{ all: true }] })
 
-    const reports = await Report.findAll({include: [{all: true}]})
-
-    res.json(reports)
+  res.json(reports)
 }
 
 export async function deleteReport(req, res) {
+  const { Report } = req.app.get('models')
+  const { user } = res.locals
+  const { reportId } = req.params
 
-    const { Report } = req.app.get('models')
-    const { user } = res.locals
-    const { reportId } = req.params
+  assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
 
-    assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
+  const report = await Report.findById(reportId)
 
-    const report = await Report.findById(reportId)
+  assertOrThrow(report, NotFound, 'Report not found')
 
-    assertOrThrow(report, NotFound, 'Report not found')
-
-    await report.destroy()
-    res.json({ status: 'ok' })
+  await report.destroy()
+  res.json({ status: 'ok' })
 }
 
 export async function getReport(req, res) {
-    
-    const { Report } = req.app.get('models')
-    const { user } = res.locals
-    const { reportId } = req.params
+  const { Report } = req.app.get('models')
+  const { user } = res.locals
+  const { reportId } = req.params
 
-    assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
+  assertOrThrow(user.role === USER_ROLES.ADMIN, Forbidden, 'Insufficient rights')
 
-    const report = await Report.find({
-        where: {
-            id: reportId,
-        },
-        include: [{all: true,}]})
+  const report = await Report.find({
+    where: {
+      id: reportId
+    },
+    include: [{ all: true }]
+  })
 
-    res.json(report)
+  res.json(report)
 }

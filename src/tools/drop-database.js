@@ -4,12 +4,11 @@ import initSequelizeFromConfig from '../database'
 drop().catch(err => console.log(err))
 
 async function drop() {
+  const config = generateConfig()
 
-    const config = generateConfig()
+  const { sequelize } = initSequelizeFromConfig(config)
 
-    const { sequelize } = initSequelizeFromConfig(config)
-    
-    await sequelize.drop()
+  await sequelize.drop()
 
-    sequelize.close()
+  sequelize.close()
 }

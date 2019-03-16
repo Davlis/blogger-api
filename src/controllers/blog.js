@@ -2,241 +2,240 @@ import { assertOrThrow, pick } from '../utils'
 import { NotFound } from '../errors'
 
 export async function createBlog(req, res) {
+  const sequelize = req.app.get('sequelize')
+  const { Blog, UserBlog } = req.app.get('models')
+  const { user } = res.locals
 
-    const sequelize = req.app.get('sequelize')
-    const { Blog, UserBlog } = req.app.get('models')
-    const { user } = res.locals
+  const input = pick(req.body, 'title subtitle photoUrl')
 
-    const input = pick(req.body, 'title subtitle photoUrl')
+  const transaction = await sequelize.transaction()
 
-    const transaction = await sequelize.transaction()
+  const blog = await Blog.create(
+    {
+      title: input.title,
+      subtitle: input.subtitle,
+      photoUrl: input.photoUrl,
+      owner: user.id
+    },
+    { transaction }
+  )
 
-    const blog = await Blog.create({
-        title: input.title,
-        subtitle: input.subtitle,
-        photoUrl: input.photoUrl,
-        owner: user.id,
-    }, { transaction })
+  await UserBlog.create(
+    {
+      userId: user.id,
+      blogId: blog.id
+    },
+    { transaction }
+  )
 
-    await UserBlog.create({
-        userId: user.id,
-        blogId: blog.id,
-    }, { transaction })
+  await transaction.commit()
 
-    await transaction.commit()
-
-    res.json(blog)
+  res.json(blog)
 }
 
 export async function getUserBlogs(req, res) {
-    
-    const { UserBlog } = req.app.get('models')
-    const { user } = res.locals
+  const { UserBlog } = req.app.get('models')
+  const { user } = res.locals
 
-    const blogs = await UserBlog.findAll({
-        where: {
-            userId: user.id,
-        },
-        include: [{all: true}],
-    })
+  const blogs = await UserBlog.findAll({
+    where: {
+      userId: user.id
+    },
+    include: [{ all: true }]
+  })
 
-    res.json(blogs)
+  res.json(blogs)
 }
 
 export async function getBlog(req, res) {
-    
-    const { Blog, UserBlog } = req.app.get('models')
-    const { user } = res.locals
-    const { blogId } = req.params
+  const { Blog, UserBlog } = req.app.get('models')
+  const { user } = res.locals
+  const { blogId } = req.params
 
-    const blog = await Blog.findById(blogId, {
-        include: [{all: true}]
-    })
+  const blog = await Blog.findById(blogId, {
+    include: [{ all: true }]
+  })
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    const userBlog = await UserBlog.find({
-        where: {
-            userId: user.id,
-        },
-    })
+  const userBlog = await UserBlog.find({
+    where: {
+      userId: user.id
+    }
+  })
 
-    const _blog = blog.toJSON()
+  const _blog = blog.toJSON()
 
-    _blog.isAuthor = !!userBlog
+  _blog.isAuthor = !!userBlog
 
-    _blog.isOwner = blog.owner === user.id
+  _blog.isOwner = blog.owner === user.id
 
-    res.json(_blog)
+  res.json(_blog)
 }
 
 export async function updateBlog(req, res) {
+  const { Blog } = req.app.get('models')
+  const { blogId } = req.params
+  const input = pick(req.body, 'title subtitle photoUrl')
 
-    const { Blog } = req.app.get('models')
-    const { blogId } = req.params
-    const input = pick(req.body, 'title subtitle photoUrl')
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  await blog.update(input)
 
-    await blog.update(input)
-
-    res.json(blog)
+  res.json(blog)
 }
 
 export async function deleteBlog(req, res) {
+  const { Blog } = req.app.get('models')
+  const { blogId } = req.params
 
-    const { Blog } = req.app.get('models')
-    const { blogId } = req.params
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  await blog.destroy()
 
-    await blog.destroy()
-
-    res.json({ status: 'ok' })
+  res.json({ status: 'ok' })
 }
 
 export async function grantAccess(req, res) {
+  const { UserBlog, Blog } = req.app.get('models')
+  const { user } = res.locals
+  const { blogId } = req.params
+  const newUser = req.body.userId
 
-    const { UserBlog, Blog } = req.app.get('models')
-    const { user } = res.locals
-    const { blogId } = req.params
-    const newUser = req.body.userId
-
-    const userBlog = await UserBlog.find({
+  const userBlog = await UserBlog.find({
+    where: {
+      blogId
+    },
+    include: [
+      {
+        model: Blog,
         where: {
-            blogId,
-        },
-        include: [{
-            model: Blog,
-            where: {
-                owner: user.id,
-            }
-        }]
-    })
+          owner: user.id
+        }
+      }
+    ]
+  })
 
-    assertOrThrow(userBlog, NotFound, 'Blog not found')
+  assertOrThrow(userBlog, NotFound, 'Blog not found')
 
-    await UserBlog.create({
-        blogId,
-        userId: newUser,
-    })
+  await UserBlog.create({
+    blogId,
+    userId: newUser
+  })
 
-    res.json(userBlog)
+  res.json(userBlog)
 }
 
 export async function revokeAccess(req, res) {
+  const { UserBlog, Blog } = req.app.get('models')
+  const { user } = res.locals
+  const { blogId } = req.params
+  const revokeUser = req.body.userId
 
-    const { UserBlog, Blog } = req.app.get('models')
-    const { user } = res.locals
-    const { blogId } = req.params
-    const revokeUser = req.body.userId
-
-    const userBlog = await UserBlog.find({
+  const userBlog = await UserBlog.find({
+    where: {
+      blogId,
+      userId: revokeUser
+    },
+    include: [
+      {
+        model: Blog,
         where: {
-            blogId,
-            userId: revokeUser,
-        },
-        include: [{
-            model: Blog,
-            where: {
-                owner: user.id,
-            }
-        }]
-    })
+          owner: user.id
+        }
+      }
+    ]
+  })
 
-    assertOrThrow(userBlog, NotFound, 'UserBlog not found')
+  assertOrThrow(userBlog, NotFound, 'UserBlog not found')
 
-    await userBlog.destroy()
+  await userBlog.destroy()
 
-    res.json({ status: 'ok' })
+  res.json({ status: 'ok' })
 }
 
 export async function addComment(req, res) {
+  const { BlogComment, Blog } = req.app.get('models')
+  const { user } = res.locals
+  const { blogId } = req.params
+  const body = req.body
 
-    const { BlogComment, Blog } = req.app.get('models')
-    const { user } = res.locals
-    const { blogId } = req.params
-    const body = req.body
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  const blogComment = await BlogComment.create({
+    content: body.content,
+    blogId,
+    owner: user.id
+  })
 
-    const blogComment = await BlogComment.create({
-        content: body.content,
-        blogId,
-        owner: user.id,
-    })
-
-    res.json(blogComment)
+  res.json(blogComment)
 }
 
 export async function getComments(req, res) {
+  const { BlogComment, Blog } = req.app.get('models')
+  const { offset = 0, limit = 20 } = req.query
+  const { blogId } = req.params
 
-    const { BlogComment, Blog } = req.app.get('models')
-    const { offset = 0, limit = 20 } = req.query
-    const { blogId } = req.params
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  const blogComments = await BlogComment.findAndCountAll({
+    where: {
+      blogId: blogId
+    },
+    include: [{ all: true }],
+    limit,
+    offset
+  })
 
-    const blogComments = await BlogComment.findAndCountAll({
-        where: {
-            blogId: blogId,
-        },
-        include: [{all: true}],
-        limit,
-        offset,
-    })
-
-    res.json(blogComments)
+  res.json(blogComments)
 }
 
 export async function removeComment(req, res) {
+  const { BlogComment, Blog } = req.app.get('models')
+  const { blogId } = req.params
+  const { commentId } = req.params
 
-    const { BlogComment, Blog } = req.app.get('models')
-    const { blogId } = req.params
-    const { commentId } = req.params
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  const blogComment = await BlogComment.findById(commentId)
 
-    const blogComment = await BlogComment.findById(commentId)
+  assertOrThrow(blogComment, NotFound, 'Blog comment not found')
 
-    assertOrThrow(blogComment, NotFound, 'Blog comment not found')
+  await blogComment.destroy()
 
-    await blogComment.destroy()
-
-    res.json({ status: 'ok' })
+  res.json({ status: 'ok' })
 }
 
 export async function updateComment(req, res) {
+  const { BlogComment, Blog } = req.app.get('models')
+  const { user } = res.locals
+  const { blogId } = req.params
+  const { commentId } = req.params
+  const body = req.body
 
-    const { BlogComment, Blog } = req.app.get('models')
-    const { user } = res.locals
-    const { blogId } = req.params
-    const { commentId } = req.params
-    const body = req.body
+  const blog = await Blog.findById(blogId)
 
-    const blog = await Blog.findById(blogId)
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  let blogComment = await BlogComment.findById(commentId)
 
-    let blogComment = await BlogComment.findById(commentId)
+  assertOrThrow(blogComment, NotFound, 'Blog comment not found')
 
-    assertOrThrow(blogComment, NotFound, 'Blog comment not found')
+  blogComment = await blogComment.update({
+    content: body.content,
+    blogId,
+    owner: user.id
+  })
 
-    blogComment = await blogComment.update({
-        content: body.content,
-        blogId,
-        owner: user.id,
-    })
-
-    res.json(blogComment)
+  res.json(blogComment)
 }

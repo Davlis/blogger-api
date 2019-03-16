@@ -4,12 +4,11 @@ import initSequelizeFromConfig from '../database'
 sync().catch(err => console.log(err))
 
 async function sync() {
+  const config = generateConfig()
 
-    const config = generateConfig()
+  const { sequelize } = initSequelizeFromConfig(config)
 
-    const { sequelize } = initSequelizeFromConfig(config)
-    
-    await sequelize.sync({force: true})
+  await sequelize.sync({ force: true })
 
-    sequelize.close()
+  sequelize.close()
 }
