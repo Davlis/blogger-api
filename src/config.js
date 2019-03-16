@@ -1,11 +1,13 @@
 import { load as dotenvLoad } from 'dotenv'
 
-export default function generateConfig(path = '.env') {
-  
-    const env = dotenvLoad({ path }).parsed || process.env
+export default function generateConfig(path = '.env') {    
+    dotenvLoad({ path })
+
+    const env = process.env
 
     return {
         env: env.ENV,
+        host: env.HOST,
         port: env.PORT,
         salt: env.SALT,
         supportEmail: env.SUPPORT_EMAIL,

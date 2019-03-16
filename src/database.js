@@ -11,7 +11,6 @@ import defineSubscription from './models/subscription'
 import defineUserUpload from './models/user-upload'
 
 export default function initSequelizeFromConfig(config) {
-
     const sequelize = new Sequelize(config.postgres.uri, {
         dialect: 'postgres',
     })

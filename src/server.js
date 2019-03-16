@@ -25,12 +25,11 @@ const depedencies = { sequelize, models, mailer, cloudinary }
 
 const app = initApp(config, depedencies)
 
-app.listen(config.port, () => {
-    console.log(`App listening on port ${config.port}!`)
+app.listen(config.port, config.host, () => {
+    console.log(`App listening on ${config.host}:${config.port}!`)
 })
 
 export default function initApp(config, depedencies) {
-  
     const app = express()
 
     app.set('config', config)
