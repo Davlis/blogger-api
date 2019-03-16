@@ -13,6 +13,7 @@
     "sync-db": "node ./dist/tools/sync-database.js",
     "seed-db": "node ./dist/tools/seed-database.js",
     "admin-db": "node ./dist/tools/admin-database.js",
+    "recreate-db": "npm run drop-db && npm run sync-db",
     "engines": "node ./dist/engines.js"
   },
   "repository": {

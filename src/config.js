@@ -6,7 +6,7 @@ export default function generateConfig(path = '.env') {
     const env = process.env
 
     return {
-        env: env.ENV,
+        env: env.NODE_ENV,
         host: env.HOST,
         port: env.PORT,
         salt: env.SALT,

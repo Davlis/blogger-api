@@ -9,7 +9,7 @@ async function sync() {
 
     const { sequelize } = initSequelizeFromConfig(config)
     
-    await sequelize.sync({force: true})
+    await sequelize.sync()
 
     sequelize.close()
 }
