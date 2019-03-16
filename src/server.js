@@ -15,10 +15,10 @@ const { sequelize, models } = initSequelize(config)
 
 mailer.setApiKey(config.mailer.SENDGRID_API_KEY)
 
-cloudinary.config({ 
-    cloud_name: config.cloud.name,
-    api_key: config.cloud.apiKey,
-    api_secret: config.cloud.apiSecret,
+cloudinary.config({
+  cloud_name: config.cloud.name,
+  api_key: config.cloud.apiKey,
+  api_secret: config.cloud.apiSecret
 })
 
 const depedencies = { sequelize, models, mailer, cloudinary }
@@ -26,44 +26,47 @@ const depedencies = { sequelize, models, mailer, cloudinary }
 const app = initApp(config, depedencies)
 
 app.listen(config.port, () => {
-    console.log(`App listening on port ${config.port}!`)
+  console.log(`App listening on port ${config.port}!`)
 })
 
 export default function initApp(config, depedencies) {
-  
-    const app = express()
+  const app = express()
 
-    app.set('config', config)
-    app.set('models', depedencies.models)
-    app.set('sequelize', depedencies.sequelize)
-    app.set('mailer', depedencies.mailer)
-    app.set('cloudinary', depedencies.cloudinary)
+  app.set('config', config)
+  app.set('models', depedencies.models)
+  app.set('sequelize', depedencies.sequelize)
+  app.set('mailer', depedencies.mailer)
+  app.set('cloudinary', depedencies.cloudinary)
 
-    app.use(morgan('dev'))
+  app.use(morgan('dev'))
 
-    app.use(cors({ origin: true }))
+  app.use(cors({ origin: true }))
 
-    app.use(bodyParser.urlencoded({ limit: '12mb',
-        extended: false,
-        parameterLimit: 1000000 }))
-    app.use(bodyParser.json({ limit: '12mb' }))
-
-    app.use(router)
-
-    app.use((err, req, res, next) => {
-        res.status(err.status || 500).json({
-            statusCode: err.status || 500,
-            error: err.name,
-            message: err.message,
-        })
+  app.use(
+    bodyParser.urlencoded({
+      limit: '12mb',
+      extended: false,
+      parameterLimit: 1000000
     })
-    app.use((req, res) => {
-        res.status(404).json({
-            statusCode: 404,
-            error: 'Not Found',
-            message: 'No such route',
-        })
-    })
+  )
+  app.use(bodyParser.json({ limit: '12mb' }))
 
-    return app
+  app.use(router)
+
+  app.use((err, req, res) => {
+    res.status(err.status || 500).json({
+      statusCode: err.status || 500,
+      error: err.name,
+      message: err.message
+    })
+  })
+  app.use((req, res) => {
+    res.status(404).json({
+      statusCode: 404,
+      error: 'Not Found',
+      message: 'No such route'
+    })
+  })
+
+  return app
 }

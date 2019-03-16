@@ -2,98 +2,101 @@ import { assertOrThrow, pick } from '../utils'
 import { NotFound } from '../errors'
 
 export async function subscribe(req, res) {
-    const { Subscription, Blog } = req.app.get('models')
-    const { user } = res.locals
+  const { Subscription, Blog } = req.app.get('models')
+  const { user } = res.locals
 
-    const input = pick(req.body, 'blogId')
+  const input = pick(req.body, 'blogId')
 
-    const blog = await Blog.findById(input.blogId)
+  const blog = await Blog.findById(input.blogId)
 
-    assertOrThrow(blog, NotFound, 'Blog not found')
+  assertOrThrow(blog, NotFound, 'Blog not found')
 
-    const subscription = await Subscription.create({
-        userId: user.id,
-        blogId: input.blogId,
-    })
+  const subscription = await Subscription.create({
+    userId: user.id,
+    blogId: input.blogId
+  })
 
-    res.json(subscription)
+  res.json(subscription)
 }
 
 export async function getSubscriptions(req, res) {
-    const { Subscription } = req.app.get('models')
-    const { user } = res.locals
+  const { Subscription } = req.app.get('models')
+  const { user } = res.locals
 
-    const subscriptions = await Subscription.findAll({
-        where: {
-            userId: user.id,
-        }
-    })
+  const subscriptions = await Subscription.findAll({
+    where: {
+      userId: user.id
+    }
+  })
 
-    res.json(subscriptions)
+  res.json(subscriptions)
 }
 
 export async function deleteSubscription(req, res) {
-    const { Subscription } = req.app.get('models')
-    const { subscriptionId } = req.params
+  const { Subscription } = req.app.get('models')
+  const { subscriptionId } = req.params
 
-    const subscription = await Subscription.findById(subscriptionId)
+  const subscription = await Subscription.findById(subscriptionId)
 
-    assertOrThrow(subscription, NotFound, 'Subscription not found')
+  assertOrThrow(subscription, NotFound, 'Subscription not found')
 
-    await subscription.destroy()
+  await subscription.destroy()
 
-    res.json({status: 'ok'})
+  res.json({ status: 'ok' })
 }
 
 export async function getPostsFromMyList(req, res) {
+  const sequelize = req.app.get('sequelize')
+  const Op = sequelize.Op
+  const { Subscription, Post } = req.app.get('models')
+  const { offset = 0, limit = 20 } = req.params
+  const { user } = res.locals
 
-    const sequelize = req.app.get('sequelize')
-    const Op = sequelize.Op
-    const { Subscription, Post } = req.app.get('models')
-    const { offset = 0, limit = 20 } = req.params
-    const { user } = res.locals
+  const subscriptions = await Subscription.findAll({
+    where: {
+      userId: user.id
+    }
+  })
 
-    const subscriptions = await Subscription.findAll({
-        where: {
-            userId: user.id,
-        }
-    })
+  const blogIds = subscriptions.map(s => s.blogId)
 
-    const blogIds = subscriptions.map(s => s.blogId)
+  const posts = await Post.findAndCountAll({
+    where: {
+      blogId: {
+        [Op.or]: blogIds
+      }
+    },
+    order: [['publishDate', 'DESC']],
+    limit,
+    offset
+  })
 
-    const posts = await Post.findAndCountAll({
-        where: {
-            blogId: {
-                [Op.or]: blogIds
-            }
-        },
-        order: [['publishDate', 'DESC']],
-        limit,
-        offset,
-    })
-
-    res.json(posts)
+  res.json(posts)
 }
 
 export async function getMyBlogList(req, res) {
-    const { User, Blog, Subscription } = req.app.get('models')
-    const { offset = 0, limit = 20 } = req.params
+  const { User, Blog, Subscription } = req.app.get('models')
+  const { offset = 0, limit = 20 } = req.params
 
-    const { user } = res.locals
+  const { user } = res.locals
 
-    const result = await Subscription.findAndCountAll({
-        where: {
-            userId: user.id,
-        },
-        include: [{
-            model: Blog,
-            include: [{
-                model: User,
-            }]
-        }],
-        limit,
-        offset,
-    })
+  const result = await Subscription.findAndCountAll({
+    where: {
+      userId: user.id
+    },
+    include: [
+      {
+        model: Blog,
+        include: [
+          {
+            model: User
+          }
+        ]
+      }
+    ],
+    limit,
+    offset
+  })
 
-    res.json(result)
+  res.json(result)
 }
