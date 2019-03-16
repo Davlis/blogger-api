@@ -15,4 +15,4 @@ RUN npm run build
 
 EXPOSE $PORT
 
-CMD /wait && npm start
+CMD /wait && npm run sync-db && npm run start
