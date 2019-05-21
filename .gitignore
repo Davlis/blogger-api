@@ -60,3 +60,5 @@ typings/
 # dotenv environment variables file
 .env
 .env.docker
+
+.DS_Store
