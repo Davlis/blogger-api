@@ -49,7 +49,7 @@ export default function initApp(config, depedencies) {
 
     app.use(router)
 
-    app.use((err, req, res, next) => {
+    app.use((err, req, res, _next) => {
         res.status(err.status || 500).json({
             statusCode: err.status || 500,
             error: err.name,

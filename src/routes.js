@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import performHealthCheck from './healthcheck'
 
 import Authenticate from './middleware/authenticate'
 import isAdmin from './middleware/isAdmin'
@@ -15,6 +16,8 @@ import adminRoutes from './routes/admin'
 import supportRoutes from './routes/support'
 
 const router = Router()
+
+router.use('/healthcheck', performHealthCheck)
 
 router.use('/api/auth', authRoutes)
 router.use('/api/home', Authenticate, homeRoutes)
