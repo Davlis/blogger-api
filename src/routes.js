@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import performHealthCheck from './healthcheck'
+import { performMetricLoadTest, performMetricFailureTest } from './metrics'
 
 import Authenticate from './middleware/authenticate'
 import isAdmin from './middleware/isAdmin'
@@ -29,5 +30,8 @@ router.use('/api/subscription', Authenticate, subscriptionRoutes)
 router.use('/api/search', Authenticate, searchRoutes)
 router.use('/api/admin', Authenticate, isAdmin, adminRoutes)
 router.use('/api/support', Authenticate, supportRoutes)
+
+router.get('/api/metrics/load', performMetricLoadTest)
+router.post('/api/metrics/fail', performMetricFailureTest)
 
 export default router
